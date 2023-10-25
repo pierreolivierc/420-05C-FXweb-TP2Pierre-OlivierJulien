@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <title>{% block titre %} {% endblock %}</title>
+    <meta charset="utf-8"/>
+    <link rel="icon" href="https://www.cegepgarneau.ca/favicon.ico"/>
+    <link rel="stylesheet" href="/static/css/styles.sass"/>
+    <link rel="stylesheet" href="/static/css/_bootstrap.css"/>
+</head>
+
+<body>
+
+<header class="m-4 text-bg-success">
+    <a href="http://127.0.0.1:5000/accueil">
+        <img src="/static/images/tp1web3logo.jpg" alt="Logo">
+    </a>
+</header>
+
+<nav>
+    <div class="d-flex justify-content-center align-items-center bg-secondary">
+        <a class="btn btn-secondary border-dark m-2 fs-4" href="http://127.0.0.1:5000/accueil">Accueil</a>
+        <a class="btn btn-secondary border-dark m-2 fs-4" href="http://127.0.0.1:5000/liste des objets">Liste des
+            objets</a>
+        <a class="btn btn-secondary border-dark m-2 fs-4" href="http://127.0.0.1:5000/ajouter un objet">Ajouter un
+            objet</a>
+    </div>
+</nav>
+
+<main>
+
+    {% block contenu %}
+        <p>Voici une valeur par défaut</p>
+    {% endblock %}
+
+</main>
+
+<footer>
+    <div class="d-flex justify-content-between bg-secondary">
+        <p class="m-2 text-decoration-underline mx-5">Par : Julien Beaumont</p>
+        <p class="m-2 text-decoration-underline mx-5">Pour : TP-1 420-05C-FX DÉVELOPPEMENT D'APPLICATIONS WEB </p>
+    </div>
+</footer>
+
+</body>
+
+</html>

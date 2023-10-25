@@ -1,0 +1,47 @@
+{% extends "base.jinja" %}
+
+{% block titre %}
+    Ajouter et éditer un objet | FAKE
+{% endblock %}
+
+{% block contenu %}
+
+    <section class="d-flex justify-content-center my-3">
+        <div class="d-flex flex-column">
+            <div class="d-flex justify-content-center fs-3">
+                <h2 class="fs-1">{{ titre_form }}</h2>
+            </div>
+            <div class="border border-dark p-2 fs-4">
+                <form method="{{ method }}" action="{{ action }}" class="px-5" enctype="multipart/form-data">
+                    <div class="my-2">
+                        <label class="d-block" for="titre">Titre</label>
+                        <input type="text" id="titre" name="titre" value="{{ titre }}" class="{{ classe_titre }}">
+                        <div class="invalid-feedback">Le titre est invalide.</div>
+                    </div>
+                    <div class="my-2">
+                        <label class="d-block" for="description">Description</label>
+                        <input type="text" id="description" name="description" value="{{ description }}"
+                               class="{{ classe_description }}">
+                        <div class="invalid-feedback">La desciption est invalide.</div>
+                    </div>
+                    <div class="my-2">
+                        <label class="d-block" for="categorie">Catégorie</label>
+                        <select id="categorie" name="categorie">
+                            <option value=1>Console</option>
+                            <option value=2>Jeu</option>
+                            <option value=3>Filme</option>
+                        </select>
+                    </div>
+                    <div class="my-2">
+                        <label class="d-block" for="image">Image</label>
+                        <input type="file" name="image" id="image"/>
+                    </div>
+                    <div class="d-flex justify-content-center m-4">
+                        <input class="px-4 fs-4" type="submit" value="{{ fonction }}">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

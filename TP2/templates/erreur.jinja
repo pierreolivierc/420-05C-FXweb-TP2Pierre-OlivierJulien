@@ -1,0 +1,16 @@
+{% extends "base.jinja" %}
+
+{% block titre %}
+    Erreur | FAKE
+{% endblock %}
+
+{% block contenu %}
+
+    <div class="d-flex justify-content-center p-5">
+        <div class="m-2 border border-dark rounded-3 p-3">
+            <h1>{{ message }}</h1>
+            <p>{{ erreur }}</p>
+        </div>
+    </div>
+
+{% endblock %}

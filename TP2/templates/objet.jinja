@@ -1,0 +1,24 @@
+{% extends "base.jinja" %}
+
+{% block contenu %}
+
+    <div class="d-flex justify-content-center">
+        <a class="btn btn-success m-2 p-2 border border-dark" href="/details?langue=fr&id= {{ objet.id }}" class="m-2 mx-5">fr_CA</a>
+        <a class="btn btn-success m-2 p-2 border border-dark" href="/details?langue=en&id= {{ objet.id }}" class="m-2 mx-5">en_CA</a>
+    </div>
+
+    <section class="m-5">
+        <div class="row">
+            <div class="col-md-12 col-lg-6 p-4 d-flex justify-content-center">
+                <img src="{{ objet.photo }}" alt="L'image d'un objet">
+            </div>
+            <div class="col-md-12 col-lg-6 p-4 border border-dark rounded-3 fs-2">
+                <h2 class="text-decoration-underline">{{ objet.titre }}</h2>
+                <p>Description : {{ objet.description }}</p>
+                <p>Date de création : {{ date }}</p>
+                <a class="btn btn-secondary border-dark fs-4" href="/modifier?id={{ objet.id }}">Modifier</a>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

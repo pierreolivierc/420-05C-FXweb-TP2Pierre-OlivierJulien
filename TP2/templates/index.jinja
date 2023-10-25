@@ -1,0 +1,28 @@
+{% extends "base.jinja" %}
+
+{% block titre %}
+    Accueil | FAKE
+{% endblock %}
+
+{% block contenu %}
+
+    <section>
+        <div class="row justify-content-center">
+            {% for o in objets %}
+                {% if o.photo == None %}
+                    {{ o.photo == "Image_de_base" }}
+                {% endif %}
+                <div class="card col-md-12 col-lg-6 d-flex justify-content-center m-4 p-3 border-dark"
+                     style="width: 18rem;">
+                    <img src="{{ o.photo }}" class="card-img-top" alt="L'image d'un objet">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ o.titre }}</h5>
+                        <p class="card-text">{{ o.description }}</p>
+                        <a href="/details?id={{ o.id }}" class="btn btn-primary">Voir l'objet</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+
+{% endblock %}

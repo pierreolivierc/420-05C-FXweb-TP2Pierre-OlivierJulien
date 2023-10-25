@@ -1,0 +1,17 @@
+{% extends "base.jinja" %}
+
+{% block titre %}
+    Confirmation | FAKE
+{% endblock %}
+
+{% block contenu %}
+
+    <section class="m-4">
+        <div class="d-flex justify-content-center">
+            <div class="{{ classe }} p-5">
+                <h3>{{ message }}</h3>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
