@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3fa62e0a-c172-49f5-8316-1b4d50820da7" name="Changes" comment="" />
+    <list default="true" id="3fa62e0a-c172-49f5-8316-1b4d50820da7" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../Travail_2_-_Troqueur_utile.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../Travail_2_-_Troqueur_utile.docx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -104,7 +106,7 @@
       <workItem from="1695817417353" duration="12637000" />
       <workItem from="1696343213062" duration="1995000" />
       <workItem from="1697301831094" duration="1425000" />
-      <workItem from="1698261669770" duration="1337000" />
+      <workItem from="1698261669770" duration="1985000" />
     </task>
     <servers />
   </component>
