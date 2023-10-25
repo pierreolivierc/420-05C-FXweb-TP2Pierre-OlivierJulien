@@ -4,6 +4,7 @@ import types
 import contextlib
 import mysql.connector
 
+
 @contextlib.contextmanager
 def creer_connexion():
     """Pour créer une connexion à la BD"""
@@ -28,6 +29,7 @@ def creer_connexion():
     finally:
         conn.close()
 
+
 @contextlib.contextmanager
 def get_curseur(self):
     """Permet d'avoir *tous* les enregistrements dans un dictionnaire"""
@@ -36,3 +38,63 @@ def get_curseur(self):
         yield curseur
     finally:
         curseur.close()
+
+
+def obtenir_les_premier_objets(conn):
+    """Retourne les cinq dernier objets ajoutés"""
+    with conn.get_curseur() as curseur:
+        curseur.execute('SELECT * FROM `objets` ORDER BY date DESC LIMIT 5;')
+        return curseur.fetchall()
+
+
+def obtenir_tous_les_objets(conn):
+    """Retourne tous les objets"""
+    with conn.get_curseur() as curseur:
+        curseur.execute('SELECT * FROM `objets` ORDER BY id DESC;')
+        return curseur.fetchall()
+
+
+def ajouter_un_objet(conn, titre, description, src, categorie):
+    """Ajouter un nouvel objet"""
+    with conn.get_curseur() as curseur:
+        curseur.execute(
+            'INSERT INTO `objets` (`id`, `titre`, `description`, `photo`, `categorie`, `date`) VALUES (NULL, %(titre)s, %(description)s, %(image)s, %(categorie)s, CURRENT_DATE);',
+            {
+                'titre': titre,
+                'description': description,
+                'image': src,
+                'categorie': categorie
+            }
+        )
+
+
+
+def obtenir_id_dernier_objet_ajoute(conn):
+        with conn.get_curseur() as curseur:
+            curseur.execute('SELECT `id` FROM `objets` ORDER BY id DESC LIMIT 1')
+            return curseur.fetchone()
+
+
+def obtenir_un_objet_par_id(conn, id):
+        with conn.get_curseur() as curseur:
+            curseur.execute(
+                'SELECT * FROM `objets` WHERE id = %(id)s',
+                {
+                    'id': id
+                }
+            )
+            return curseur.fetchone()
+
+
+def modifier_un_objet(conn, titre, description, src, categorie, id):
+        with conn.get_curseur() as curseur:
+            curseur.execute(
+                'UPDATE `objets` SET `titre` = %(titre)s, `description` = %(description)s, `photo` = %(image)s, `categorie` = %(categorie)s WHERE `objets`.`id` = %(id)s;',
+                {
+                    'titre': titre,
+                    'description': description,
+                    'image': src,
+                    'categorie': categorie,
+                    'id': id
+                }
+            )

@@ -5,7 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3fa62e0a-c172-49f5-8316-1b4d50820da7" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../Travail_2_-_Troqueur_utile.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../Travail_2_-_Troqueur_utile.docx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/compte.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/objet.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utilitaires.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bd.py" beforeDir="false" afterPath="$PROJECT_DIR$/bd.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.jinja" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.jinja" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,8 +22,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="CSS File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -40,7 +47,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/pierr/OneDrive/Bureau/tp1Web/tp1Web/tp1_troqueur",
+    "last_opened_file_path": "C:/Users/julie/OneDrive/Bureau/Prog/session 4/web 3/TP2/420-05C-FXweb-TP2Pierre-OlivierJulien/TP2/app.py",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -57,24 +64,23 @@
       <recent name="C:\Users\julie\OneDrive\Bureau\Prog\session 4\web\TP\TP1\TP1\image" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\julie\OneDrive\Bureau\Prog\session 4\web 3\TP2\420-05C-FXweb-TP2Pierre-OlivierJulien\TP2" />
       <recent name="C:\Users\julie\OneDrive\Bureau\Prog\session 4\web 3\TP\TP1\TP1-Web_3\tp1_web3\TP1\static\images\ajouts" />
       <recent name="C:\Users\julie\OneDrive\Bureau\TP\TP1\TP1-Web_3\tp1_web3\TP1\static\images\ajouts" />
       <recent name="C:\Users\julie\OneDrive\Bureau\Prog\session 4\web 3\TP\TP1\TP1\static\images" />
       <recent name="C:\Users\julie\OneDrive\Bureau\Prog\session 4\web 3\TP\TP1\TP1" />
-      <recent name="C:\Users\julie\OneDrive\Bureau\Prog\session 4\web 3\TP\TP1\TP1\static" />
     </key>
   </component>
   <component name="RunManager">
     <configuration name="Flask (app.py)" type="Python.FlaskServer" nameIsGenerated="true">
       <module name="TP1" />
-      <option name="target" value="C:\Users\pierr\OneDrive - Cégep Garneau\420-05C-FX Développement d'application\Travaux\TP2\420-05C-FXweb-TP2Pierre-OlivierJulien\TP2\app.py" />
+      <option name="target" value="C:\Users\julie\OneDrive\Bureau\Prog\session 4\web 3\TP2\420-05C-FXweb-TP2Pierre-OlivierJulien\TP2\app.py" />
       <option name="targetType" value="PATH" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="C:\Users\pierr\AppData\Local\Programs\Python\Python311\python.exe" />
-      <option name="SDK_NAME" value="Python 3.11" />
+      <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="false" />
+      <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
@@ -107,6 +113,7 @@
       <workItem from="1696343213062" duration="1995000" />
       <workItem from="1697301831094" duration="1425000" />
       <workItem from="1698261669770" duration="1985000" />
+      <workItem from="1698264283070" duration="2795000" />
     </task>
     <servers />
   </component>
@@ -125,9 +132,9 @@
     </option>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/app_py$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1698267077570" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/TP1$Flask______________.coverage" NAME="Flask Coverage Results" MODIFIED="1694433292040" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/TP1$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1694186157215" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/app_py$Flask.coverage" NAME="Flask Coverage Results" MODIFIED="1696343213910" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/app_py$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1698262421796" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
