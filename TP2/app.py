@@ -25,8 +25,8 @@ app.config['CHEMIN_VERS_AJOUTS'] = os.path.join(
 )
 
 
-@app.route('/accueil')
-def page_accuiel():
+@app.route('/')
+def page_accueil():
     """Gestion de la page d'accuil."""
     with bd.creer_connexion() as connexion:
         with connexion.get_curseur() as curseur:
