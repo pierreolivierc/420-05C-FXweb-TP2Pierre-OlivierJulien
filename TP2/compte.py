@@ -10,3 +10,10 @@ import bd
 
 bp_compte = Blueprint('compte', __name__)
 
+@bp_compte.route('/authentifier')
+def page_de_connexion():
+    pass
+
+@bp_compte.route('/deconnecter')
+def deconnexion():
+    pass

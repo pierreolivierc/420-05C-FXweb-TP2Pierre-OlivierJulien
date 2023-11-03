@@ -25,6 +25,12 @@
         <a class="btn btn-secondary border-dark m-2 fs-4" href="http://127.0.0.1:5000/objet/ajouter">Ajouter un
             objet</a>
     </div>
+    <div class="d-flex justify-content-end align-items-center">
+        {# {% if not session.utilisateur %} #}
+            <a class="btn btn-secondary border-dark m-2 fs-4" href="/compte/authentifier">Se connecter</a>
+        {# {% else %} #}
+            <a class="btn btn-secondary border-dark m-2 fs-4" href="/compte/deconnecter">Se deconnecter</a>
+    </div>
 </nav>
 
 <main>
