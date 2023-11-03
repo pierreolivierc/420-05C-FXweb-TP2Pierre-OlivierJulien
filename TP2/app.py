@@ -7,6 +7,7 @@ import os
 import bd
 import re
 
+from compte import bp_compte
 from objet import bp_objet
 
 app = Flask(__name__)
@@ -26,6 +27,7 @@ app.config['CHEMIN_VERS_AJOUTS'] = os.path.join(
     *app.config['MORCEAUX_VERS_AJOUTS'])
 
 app.register_blueprint(bp_objet, url_prefix='/objet')
+app.register_blueprint(bp_compte, url_prefix='/compte')
 
 @app.route('/')
 def page_accueil():
@@ -40,7 +42,6 @@ def mauvaise_requete(e):
     erreur = e.description
     return render_template('erreur.jinja', message="Un paramètre du formulaire est manquant", erreur=erreur), 400
 
-
 @app.errorhandler(404)
 def mauvaise_requete(e):
     """Gestion de l'erreur 404"""
@@ -54,3 +55,15 @@ def mauvaise_requete(e):
     erreur = e.description
     return render_template('erreur.jinja', message="Une erreur est survenue en lien avec la base de données.",
                            erreur=erreur), 500
+
+
+def changer_langue(langue):
+    app.config["BABEL_DEFAULT_LOCALE"] = langue
+
+def chemain_ajout(nom_image):
+    return  os.path.join(
+        app.config['CHEMIN_VERS_AJOUTS'], nom_image
+    )
+
+def attribuer_src(nom_image):
+   return "/" + app.config['ROUTE_VERS_AJOUTS'] + "/" + nom_image

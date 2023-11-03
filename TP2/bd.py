@@ -58,7 +58,7 @@ def ajouter_un_objet(conn, titre, description, src, categorie):
     """Ajouter un nouvel objet"""
     with conn.get_curseur() as curseur:
         curseur.execute(
-            'INSERT INTO `objets` (`id`, `titre`, `description`, `photo`, `categorie`, `date`) VALUES (NULL, %(titre)s, %(description)s, %(image)s, %(categorie)s, CURRENT_DATE);',
+            'INSERT INTO `objets` (`id`, `titre`, `description`, `photo`, `categorie`, `date`, `Proprietaire`) VALUES (NULL, %(titre)s, %(description)s, %(image)s, %(categorie)s, CURRENT_DATE, 1);',
             {
                 'titre': titre,
                 'description': description,

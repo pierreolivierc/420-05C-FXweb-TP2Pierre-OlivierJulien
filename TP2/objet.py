@@ -12,8 +12,6 @@ regex_paterne_titre = re.compile(r"([aA-zZ\s]{1,50})")
 regex_paterne_description = re.compile(r"(^.{5,2000}$)")
 regex_paterne_photo = re.compile(r"([\w*.-]{6,50})")
 
-
-
 bp_objet = Blueprint('objet', __name__)
 
 @bp_objet.route('/liste')
@@ -27,7 +25,7 @@ def page_liste_des_objets():
 @bp_objet.route('/ajouter', methods=["GET", "POST"])
 def page_ajouter_un_objet():
     """Gestion de l'ajout et la modification d'un objet."""
-    action = "/ajouter un objet"
+    action = "/objet/ajouter"
     method = "POST"
     id = 0
     classe_titre = ""
@@ -61,12 +59,10 @@ def page_ajouter_un_objet():
         if regex_paterne_titre.fullmatch(titre) and regex_paterne_description.fullmatch(
                 description) and regex_paterne_photo.fullmatch(nom_image):
             if nom_image != "vide.jpg":
-                chemin_complet = os.path.join(
-                    app.config['CHEMIN_VERS_AJOUTS'], nom_image
-                )
+                chemin_complet = app.chemain_ajout(nom_image)
                 fichier.save(chemin_complet)
 
-            src = "/" + app.config['ROUTE_VERS_AJOUTS'] + "/" + nom_image
+            src = app.attribuer_src(nom_image)
 
             with bd.creer_connexion() as conn:
                 bd.ajouter_un_objet(conn, titre, description, src, categorie)
@@ -75,7 +71,7 @@ def page_ajouter_un_objet():
                     id = bd.obtenir_id_dernier_objet_ajoute()
 
             return redirect(
-                "/confirmation?titre=" + titre + "&description=" + description + "&photo=" + src + "&categorie=" + categorie + "&id=" + str(
+                "/objet/confirmation?titre=" + titre + "&description=" + description + "&photo=" + src + "&categorie=" + categorie + "&id=" + str(
                     id['id']), code=303)
 
     return render_template(
@@ -128,9 +124,9 @@ def page_details():
     langue = request.args.get("langue", type=str)
 
     if langue == "fr":
-        app.config["BABEL_DEFAULT_LOCALE"] = "fr_CA"
+        app.changer_langue("fr_CA")
     elif langue == "en":
-        app.config["BABEL_DEFAULT_LOCALE"] = "en_CA"
+        app.changer_langue("en_CA")
 
     with bd.creer_connexion() as conn:
         objet = bd.obtenir_un_objet_par_id(conn, id)
