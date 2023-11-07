@@ -67,6 +67,17 @@ def ajouter_un_objet(conn, titre, description, src, categorie):
             }
         )
 
+# TODO confirmer avec Jul s'il a changé deja le sql
+def chercher_utilisateur(conn):
+    with conn.get_curseur() as curseur:
+        curseur.execute('SELECT `nom` FROM `Utilisateur`')
+        utilisateur = curseur.fetchone()
+        erreur = (not utilisateur)
+        if not erreur:
+            return utilisateur
+    # TODO gestion d'une erreur en cas que l'utilisateur existe pas, voir exercice 9
+
+
 
 
 def obtenir_id_dernier_objet_ajoute(conn):
