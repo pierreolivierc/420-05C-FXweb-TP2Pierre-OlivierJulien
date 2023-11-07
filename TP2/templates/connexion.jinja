@@ -1,7 +1,7 @@
 {% extends "base.jinja" %}
 
 {% block titre %}
-    Connexion | FAKE
+    {{ titre_page }} | FAKE
 {% endblock %}
 
 {% block contenu %}
@@ -18,7 +18,7 @@
                     <input name="mdp" id="mdp" type="text">
                 </div>
                 <div class="d-flex flex-row-reverse m-3">
-                    <input class="px-3" value="Se connecter" type="submit">
+                    <input class="px-3 btn btn-secondary" value="{{ bouton_soumettre }}" type="submit">
                 </div>
             </form>
         </div>

@@ -1,12 +1,24 @@
+import datetime
+import os
 
-from flask import Blueprint, render_template, redirect, request, session
+from babel import dates
+from flask import Blueprint, abort, render_template, redirect, url_for, request, session
 
 import bd
 from utilitaires import hacher_mdp
 
 bp_compte = Blueprint('compte', __name__)
 
-@bp_compte.route('/authentifier', methods=['GET', 'POST'])
+@bp_compte.route('/authentifier')
+def page_de_connexion():
+    return render_template('connexion.jinja', titre_page="CONNEXION", bouton_soumettre= "Connecter")
+
+@bp_compte.route('/creer_compte')
+def creation_de_compte():
+    return render_template('connexion.jinja', titre_page="CRÉER COMPTE", bouton_soumettre= "Créer le compte")
+
+
+@bp_compte.route('/valider_authentifier', methods=['GET', 'POST'])
 def authentifier():
     """Pour effectuer une authentification"""
     erreur = False
@@ -32,4 +44,3 @@ def deconnexion():
 @bp_compte.route('/creation_utilisateur')
 def nouveau_utilisateur():
     return render_template('creation_utilisateur.jinja')
-
