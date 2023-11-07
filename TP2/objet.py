@@ -2,7 +2,7 @@ import datetime
 import os
 
 from babel import dates
-from flask import Blueprint, abort, render_template, redirect, url_for, request, session
+from flask import Blueprint, abort, render_template, redirect, url_for, request, session, flash
 import re
 
 import app
@@ -68,11 +68,13 @@ def page_ajouter_un_objet():
                 bd.ajouter_un_objet(conn, titre, description, src, categorie)
 
             with bd.creer_connexion() as conn:
-                    id = bd.obtenir_id_dernier_objet_ajoute()
+                    id = bd.obtenir_id_dernier_objet_ajoute(conn)
 
-            return redirect(
-                "/objet/confirmation?titre=" + titre + "&description=" + description + "&photo=" + src + "&categorie=" + categorie + "&id=" + str(
-                    id['id']), code=303)
+            #flash('Objet ajouté.')
+            return render_template("/", code=303)
+            #return redirect(
+            #    "/objet/confirmation?titre=" + titre + "&description=" + description + "&photo=" + src + "&categorie=" + categorie + "&id=" + str(
+            #        id['id']), code=303)
 
     return render_template(
         'ajouter_et_editer_un_objet.jinja',
