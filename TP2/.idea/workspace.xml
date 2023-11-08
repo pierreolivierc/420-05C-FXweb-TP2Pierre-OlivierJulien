@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="3fa62e0a-c172-49f5-8316-1b4d50820da7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compte.py" beforeDir="false" afterPath="$PROJECT_DIR$/compte.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/connexion.jinja" beforeDir="false" afterPath="$PROJECT_DIR$/templates/connexion.jinja" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,7 +111,7 @@
       <workItem from="1699361166168" duration="3634000" />
       <workItem from="1699368388392" duration="347000" />
       <workItem from="1699368776587" duration="9082000" />
-      <workItem from="1699468941982" duration="6257000" />
+      <workItem from="1699468941982" duration="6374000" />
     </task>
     <servers />
   </component>
