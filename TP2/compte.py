@@ -13,7 +13,7 @@ bp_compte = Blueprint('compte', __name__)
 
 @bp_compte.route('/authentifier')
 def page_de_connexion():
-    return render_template('connexion.jinja', titre_page="CONNEXION", bouton_soumettre= "Connecter")
+    return render_template('connexion.jinja', titre_page="CONNEXION", blueprint="authentifier", bouton_soumettre= "Connecter")
 
 
 @bp_compte.route('/creer_compte', methods=["GET", "POST"])
@@ -31,7 +31,7 @@ def creation_de_compte():
             with bd.creer_connexion() as conn:
                 bd.ajouter_utilisateur(conn, courriel, mdp)
     else:
-        return render_template('connexion.jinja', titre_page="CRÉER COMPTE", bouton_soumettre="Créer le compte")
+        return render_template('connexion.jinja', titre_page="CRÉER COMPTE", blueprint="creer_compte", bouton_soumettre="Créer le compte")
 
 
 @bp_compte.route('/valider_authentifier', methods=['GET', 'POST'])
