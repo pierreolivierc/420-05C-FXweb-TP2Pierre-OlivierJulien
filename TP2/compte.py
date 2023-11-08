@@ -5,17 +5,33 @@ from babel import dates
 from flask import Blueprint, abort, render_template, redirect, url_for, request, session
 
 import bd
+import utilitaires
 from utilitaires import hacher_mdp
 
 bp_compte = Blueprint('compte', __name__)
+
 
 @bp_compte.route('/authentifier')
 def page_de_connexion():
     return render_template('connexion.jinja', titre_page="CONNEXION", bouton_soumettre= "Connecter")
 
-@bp_compte.route('/creer_compte')
+
+@bp_compte.route('/creer_compte', methods=["GET", "POST"])
 def creation_de_compte():
-    return render_template('connexion.jinja', titre_page="CRÉER COMPTE", bouton_soumettre= "Créer le compte")
+    if request.method == "POST":
+        courriel = (request.form.get("courriel", default=""))
+        mdp = (request.form.get("mdp", default=""))
+        courriel_valide = utilitaires.verifier_courriel(courriel)
+        mdp_valide = utilitaires.verifier_mot_de_passe(mdp)
+        if not courriel_valide or not mdp_valide:
+            salut = "TODO"
+        else:
+            mdp_hacher = utilitaires.hacher_mdp(mdp)
+            with bd.creer_connexion() as conn:
+                bd.ajouter_utilisateur(conn, courriel, mdp)
+    else:
+        return render_template('connexion.jinja', titre_page="CRÉER COMPTE", bouton_soumettre="Créer le compte")
+
 
 
 @bp_compte.route('/valider_authentifier', methods=['GET', 'POST'])

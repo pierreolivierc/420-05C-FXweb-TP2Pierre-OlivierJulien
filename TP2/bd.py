@@ -67,6 +67,18 @@ def ajouter_un_objet(conn, titre, description, src, categorie):
             }
         )
 
+
+def ajouter_utilisateur(conn, courriel, mdp):
+    with conn.get_curseur() as curseur:
+        curseur.execute(
+            'INSERT INTO utilisateur (courriel, mdp, admin) VALUES (%(courriel)s, %(mdp)s, 0)',
+            {
+                'courriel': courriel,
+                'mdp': mdp
+            }
+        )
+
+
 # TODO confirmer avec Jul s'il a changé deja le sql
 def chercher_utilisateur(conn):
     with conn.get_curseur() as curseur:
