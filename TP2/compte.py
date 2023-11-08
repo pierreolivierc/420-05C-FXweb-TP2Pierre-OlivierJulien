@@ -42,7 +42,6 @@ def authentifier():
         courriel = (request.form.get("courriel", default=""))
         mdp = (request.form.get("mdp", default=""))
         mdphacher = utilitaires.hacher_mdp(mdp)
-        # TODO modifier chercher_utilisateur et vérifier si conn is good
         with bd.creer_connexion() as conn:
             utilisateur = bd.chercher_utilisateur(conn, courriel, mdphacher)
 
