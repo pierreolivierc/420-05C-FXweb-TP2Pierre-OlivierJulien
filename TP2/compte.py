@@ -24,6 +24,7 @@ def creation_de_compte():
         courriel_valide = utilitaires.verifier_courriel(courriel)
         mdp_valide = utilitaires.verifier_mot_de_passe(mdp)
         if not courriel_valide or not mdp_valide:
+            # TODO ajout d'une condition en cas d'erreur
             salut = "TODO"
         else:
             mdp_hacher = utilitaires.hacher_mdp(mdp)
@@ -33,18 +34,17 @@ def creation_de_compte():
         return render_template('connexion.jinja', titre_page="CRÉER COMPTE", bouton_soumettre="Créer le compte")
 
 
-
 @bp_compte.route('/valider_authentifier', methods=['GET', 'POST'])
 def authentifier():
     """Pour effectuer une authentification"""
     erreur = False
-    courriel = request.form.get("courriel", default="")
-
     if (request.method == 'POST') :
-        mdp = hacher_mdp(request.form.get("mdp"))
+        courriel = (request.form.get("courriel", default=""))
+        mdp = (request.form.get("mdp", default=""))
+        mdphacher = utilitaires.hacher_mdp(mdp)
         # TODO modifier chercher_utilisateur et vérifier si conn is good
-        conn = bd.creer_connexion()
-        utilisateur = bd.chercher_utilisateur(conn)
+        with bd.creer_connexion() as conn:
+            utilisateur = bd.chercher_utilisateur(conn, courriel, mdphacher)
 
 #TODO corriger si pas erreur ou le faire directement dans bd.py?
     #return render_template(
@@ -53,9 +53,15 @@ def authentifier():
         #erreur=erreur
     #)
 
+
 @bp_compte.route('/deconnecter')
 def deconnexion():
-    pass
+    """Permet à l'utilisateur de se deconnecter"""
+    session.clear()
+    with bd.creer_connexion() as conn:
+            objets = bd.obtenir_les_premier_objets(conn)
+    return render_template('index.jinja', objets=objets)
+
 
 @bp_compte.route('/creation_utilisateur')
 def nouveau_utilisateur():

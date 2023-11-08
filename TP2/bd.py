@@ -79,14 +79,15 @@ def ajouter_utilisateur(conn, courriel, mdp):
         )
 
 
-# TODO confirmer avec Jul s'il a changé deja le sql
-def chercher_utilisateur(conn):
+def chercher_utilisateur(conn, courriel, mdp):
     with conn.get_curseur() as curseur:
-        curseur.execute('SELECT `nom` FROM `Utilisateur`')
+        curseur.execute('SELECT * FROM utilisateur WHERE courriel = %s AND mdp = %s', (courriel, mdp))
         utilisateur = curseur.fetchone()
-        erreur = (not utilisateur)
+        erreur = (utilisateur is None)
         if not erreur:
             return utilisateur
+        else:
+            salut ="todo"
     # TODO gestion d'une erreur en cas que l'utilisateur existe pas, voir exercice 9
 
 
