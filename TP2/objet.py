@@ -122,10 +122,9 @@ def page_confirmation():
     return render_template('confirmation.jinja', message=message, classe=classe)
 
 
-@bp_objet.route('/details', methods=["GET"])
-def page_details():
+@bp_objet.route('/details/<int:id>', methods=["GET"])
+def page_details(id):
     """Gestion de page personnalisée d'un objet."""
-    identifiant = request.args.get("id", type=int)
     langue = request.args.get("langue", type=str)
 
     if langue == "fr":
@@ -134,19 +133,18 @@ def page_details():
         app.changer_langue("en_CA")
 
     with bd.creer_connexion() as conn:
-        objet = bd.obtenir_un_objet_par_id(conn, identifiant)
+        objet = bd.obtenir_un_objet_par_id(conn, id)
 
     date = app.format_date(objet['date'])
 
     return render_template('objet.jinja', objet=objet, date=date)
 
 
-@bp_objet.route('/modifier', methods=["GET", "POST"])
-def page_editer():
+@bp_objet.route('/modifier/<int:id>', methods=["GET", "POST"])
+def page_editer(id):
     """Gestion de la modification d'un objet."""
     method = "POST"
     classe_titre = ""
-    id = ""
     classe_description = ""
     titre_form = "Modifier un objet :"
 
@@ -163,8 +161,6 @@ def page_editer():
         titre = ""
         description = ""
         fichier = ""
-
-    id = request.args.get("id", type=int)
 
     action = "/modifier?id=" + str(id)
 
@@ -226,4 +222,6 @@ def page_editer():
         titre_form=titre_form
     )
 
-
+@bp_objet.route('/troquer', methods=["GET", "POST"])
+def troquer():
+    render_template('troquer.jinja')
