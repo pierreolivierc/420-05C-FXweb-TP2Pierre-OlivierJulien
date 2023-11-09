@@ -225,3 +225,8 @@ def page_editer(id):
 @bp_objet.route('/troqueur/<int:id>', methods=["GET", "POST"])
 def troquer(id):
     return  render_template('troqueur.jinja')
+
+@bp_objet.route('/supprimer_objet/<int:id>', methods=["GET", "POST"])
+def supprimer_objet(id):
+    ##TODO supprimer objet
+    return  render_template('index.jinja')
