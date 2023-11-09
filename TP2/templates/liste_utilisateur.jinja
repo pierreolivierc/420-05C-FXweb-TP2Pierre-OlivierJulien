@@ -3,18 +3,20 @@
 {% block contenu %}
 
     <section>
-        <div class="row justify-content-center">
-            <div class="card col-md-12 col-lg-6 d-flex justify-content-center m-4 p-3 border-dark"
-                 style="width: 18rem;">
-                <div class="card" style="width: 18rem;">
-                    <ul class="list-group list-group-flush">
-                        {% for o in utilisateur %}
-                            <li class="list-group-item">o.courriel</li>
-                        {% endfor %}
-                    </ul>
+        <div class="row justify-content-center m-4 p-3">
+            {% for o in utilisateur %}
+                <div class="col-md-4">
+                    <div class="card m-2">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ o.courriel }}</h5>
+                            <p class=""></p>
+                            <a href="#" class="btn btn-danger">Supprimer</a>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            {% endfor %}
         </div>
     </section>
+
 
 {% endblock %}

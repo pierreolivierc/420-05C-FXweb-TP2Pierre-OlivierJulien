@@ -114,7 +114,9 @@ def deconnexion():
 def lister_utilisateur():
     admin = session.get('admin')
     if admin == 1:
-        return render_template('/liste_utilisateur.jinja')
+        with bd.creer_connexion() as conn:
+            tous_les_utilisateurs = bd.obtenir_tous_les_utilisateur(conn)
+        return render_template('/liste_utilisateur.jinja', utilisateur=tous_les_utilisateurs)
     elif admin == 0:
         abort(403)
     else:

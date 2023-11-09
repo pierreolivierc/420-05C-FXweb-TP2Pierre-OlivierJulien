@@ -91,7 +91,6 @@ def verifier_si_courriel_existe(conn, courriel):
         return curseur.fetchone()
 
 
-
 def chercher_utilisateur(conn, courriel, mdp):
     with conn.get_curseur() as curseur:
         curseur.execute('SELECT * FROM utilisateur WHERE courriel = %s AND mdp = %s', (courriel, mdp))
@@ -102,8 +101,6 @@ def chercher_utilisateur(conn, courriel, mdp):
         else:
             salut ="todo"
     # TODO gestion d'une erreur en cas que l'utilisateur existe pas, voir exercice 9
-
-
 
 
 def obtenir_id_dernier_objet_ajoute(conn):
@@ -123,6 +120,12 @@ def obtenir_un_objet_par_id(conn, id):
             return curseur.fetchone()
 
 
+def obtenir_tous_les_utilisateur(conn):
+    with conn.get_curseur() as curseur:
+        curseur.execute('SELECT * FROM `utilisateur`')
+        return curseur.fetchall()
+
+
 def modifier_un_objet(conn, titre, description, src, categorie, id):
         with conn.get_curseur() as curseur:
             curseur.execute(
@@ -135,3 +138,4 @@ def modifier_un_objet(conn, titre, description, src, categorie, id):
                     'id': id
                 }
             )
+
