@@ -96,6 +96,12 @@ def creation_de_compte():
         #erreur=erreur
     #)
 
+def creer_session(courriel, admin):
+    if session:
+        session.clear()
+    session.permanent = True
+    session['courriel'] = courriel
+    session['admin'] = admin
 
 @bp_compte.route('/deconnecter')
 def deconnexion():
@@ -104,10 +110,12 @@ def deconnexion():
     flash('Déconnection réussi.')
     return redirect("/", code=303)
 
-
-def creer_session(courriel, admin):
-    if session:
-        session.clear()
-    session.permanent = True
-    session['courriel'] = courriel
-    session['admin'] = admin
+@bp_compte.route('/liste_utilisateur')
+def lister_utilisateur():
+    admin = session.get('admin')
+    if admin == 1:
+        return render_template('/liste_utilisateur.jinja')
+    elif admin == 0:
+        abort(403)
+    else:
+        abort(401)

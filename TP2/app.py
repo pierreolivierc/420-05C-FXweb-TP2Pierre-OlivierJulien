@@ -31,6 +31,7 @@ app.register_blueprint(bp_compte, url_prefix='/compte')
 
 app.secret_key = 'b51213b260450a05dc8d0619a1e6850dd2e6902c0dcc9b02369749761b4b5f2f'
 
+
 @app.route('/')
 def page_accueil():
     """Gestion de la page d'accuil."""
@@ -38,11 +39,26 @@ def page_accueil():
             objets = bd.obtenir_les_premier_objets(conn)
     return render_template('index.jinja', objets=objets)
 
+
 @app.errorhandler(400)
 def mauvaise_requete(e):
     """Gestion de l'erreur 400"""
     erreur = e.description
     return render_template('erreur.jinja', message="Un paramètre du formulaire est manquant", erreur=erreur), 400
+
+
+@app.errorhandler(401)
+def mauvaise_requete(e):
+    """Gestion de l'erreur 400"""
+    erreur = e.description
+    return render_template('erreur.jinja', message="Vous n'êtes pas authentifié.", erreur=erreur), 400
+
+
+@app.errorhandler(403)
+def mauvaise_requete(e):
+    """Gestion de l'erreur 403"""
+    erreur = e.description
+    return render_template('erreur.jinja', message="Vous n'avez pas l'autorisation pour accéder à cette page", erreur=erreur), 400
 
 @app.errorhandler(404)
 def mauvaise_requete(e):

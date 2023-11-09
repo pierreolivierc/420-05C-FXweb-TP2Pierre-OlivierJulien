@@ -89,8 +89,7 @@ def page_ajouter_un_objet():
             titre_form=titre_form
         )
     else:
-        flash('Bien essayé.')
-        return redirect("/", code=303)
+        abort(401)
 
 
 @bp_objet.route('/confirmation')
