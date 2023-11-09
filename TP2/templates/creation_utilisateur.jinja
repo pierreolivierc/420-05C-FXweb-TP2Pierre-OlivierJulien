@@ -9,7 +9,7 @@
     <section class="m-4">
         {% with message = get_flashed_messages() %}
             {% if message %}
-                <div class="retroactions bg-success text-black m-2 p-2 rounded fs-2">
+                <div class="retroactions bg-danger text-white m-2 p-2 rounded fs-2">
                     <p>{{ message[0] }}</p>
                 </div>
             {% endif %}

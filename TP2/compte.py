@@ -24,6 +24,7 @@ def page_de_connexion():
             flash('Connexion réussi.')
             return redirect("/", code=303)
         else:
+            flash('Erreur: Le courriel ou le mot de passe est invalide.')
             return render_template('connexion.jinja')
     else:
         return render_template('connexion.jinja')
