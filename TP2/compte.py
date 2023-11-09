@@ -46,16 +46,18 @@ def creation_de_compte():
             if not courriel_valide or not mdp_valide or Courriel or mdp != mdp2:
                 # TODO ajout d'une condition en cas d'erreur
                 if not courriel_valide or Courriel:
-                    flash('Erreur: Courriel invalide.')
+                    flash('Courriel invalide.')
+                    return render_template('creation_utilisateur.jinja', est_invalide="is-invalid")
                 elif not mdp_valide:
-                    flash(
-                        'Le mot de passe doit respecter les règles suivantes : Une lettre majuscule, une lettre minuscule, un nombre et avoir une longueur de 8 charactères au minimum')
+                    flash('Le mot de passe doit respecter les règles suivantes : Une lettre majuscule, une lettre minuscule, un nombre et avoir une longueur de 8 charactères au minimum')
+                    return render_template('creation_utilisateur.jinja', est_invalide2="is-invalid")
                 elif mdp != mdp2:
                     flash('Erreur : Les deux mots de passe ne sont pas identiques.')
+                    return render_template('creation_utilisateur.jinja', est_invalide2="is-invalid", est_invalide3="is-invalid")
+
                 else:
                     flash('Erreur.')
-
-                return render_template('creation_utilisateur.jinja')
+                    return render_template('creation_utilisateur.jinja')
             else:
                 mdp = utilitaires.hacher_mdp(mdp)
 
