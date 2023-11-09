@@ -6,13 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="3fa62e0a-c172-49f5-8316-1b4d50820da7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bd.py" beforeDir="false" afterPath="$PROJECT_DIR$/bd.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/compte.py" beforeDir="false" afterPath="$PROJECT_DIR$/compte.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/objet.py" beforeDir="false" afterPath="$PROJECT_DIR$/objet.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.jinja" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.jinja" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/index.jinja" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.jinja" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utilitaires.py" beforeDir="false" afterPath="$PROJECT_DIR$/utilitaires.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/connexion.jinja" beforeDir="false" afterPath="$PROJECT_DIR$/templates/connexion.jinja" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/creation_utilisateur.jinja" beforeDir="false" afterPath="$PROJECT_DIR$/templates/creation_utilisateur.jinja" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +43,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/julie/OneDrive/Bureau/Prog/session 4/web 3/TP2/420-05C-FXweb-TP2Pierre-OlivierJulien/TP2/app.py",
+    "last_opened_file_path": "C:/Users/pierr/OneDrive - Cégep Garneau/420-05C-FX Développement d'application/Travaux/TP2/420-05C-FXweb-TP2Pierre-OlivierJulien/TP2/app.py",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -74,7 +70,7 @@
   <component name="RunManager">
     <configuration name="Flask (app.py)" type="Python.FlaskServer" nameIsGenerated="true">
       <module name="TP1" />
-      <option name="target" value="C:\Users\julie\OneDrive\Bureau\Prog\session 4\web 3\TP2\420-05C-FXweb-TP2Pierre-OlivierJulien\TP2\app.py" />
+      <option name="target" value="C:\Users\pierr\OneDrive - Cégep Garneau\420-05C-FX Développement d'application\Travaux\TP2\420-05C-FXweb-TP2Pierre-OlivierJulien\TP2\app.py" />
       <option name="targetType" value="PATH" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -138,22 +134,11 @@
       </map>
     </option>
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/compte.py</url>
-          <line>40</line>
-          <option name="timeStamp" value="33" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/app_py$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1699481927629" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/TP1$Flask______________.coverage" NAME="Flask Coverage Results" MODIFIED="1694433292040" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/TP1$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1694186157215" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/app_py$Flask____________________FOLDER_Prog_session_4_web_3_TP2_420_05C_FXweb_TP2Pierre_OlivierJulien_TP2_app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1699540627181" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/app_py$Flask.coverage" NAME="Flask Coverage Results" MODIFIED="1699365020388" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/app_py$Flask____________________FOLDER_Prog_session_4_web_3_TP2_420_05C_FXweb_TP2Pierre_OlivierJulien_TP2_app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1699540627181" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/app_py$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1699545754820" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

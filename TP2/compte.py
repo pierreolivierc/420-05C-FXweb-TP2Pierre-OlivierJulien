@@ -24,9 +24,9 @@ def page_de_connexion():
             flash('Connexion réussi.')
             return redirect("/", code=303)
         else:
-            return render_template('connexion.jinja', titre_page="CONNEXION", blueprint="authentifier", bouton_soumettre="Connecter")
+            return render_template('connexion.jinja')
     else:
-        return render_template('connexion.jinja', titre_page="CONNEXION", blueprint="authentifier", bouton_soumettre= "Connecter")
+        return render_template('connexion.jinja')
 
 
 @bp_compte.route('/creer_compte', methods=["GET", "POST"])
@@ -34,11 +34,12 @@ def creation_de_compte():
     if request.method == "POST":
         courriel = (request.form.get("courriel", default=""))
         mdp = (request.form.get("mdp", default=""))
+        mdp2 = (request.form.get("mdp2", default=""))
         courriel_valide = utilitaires.verifier_courriel(courriel)
         mdp_valide = utilitaires.verifier_mot_de_passe(mdp)
         with bd.creer_connexion() as conn:
             Courriel = bd.verifier_si_courriel_existe(conn, courriel)
-        if not courriel_valide or not mdp_valide or Courriel :
+        if not courriel_valide or not mdp_valide or Courriel or mdp != mdp2 :
             # TODO ajout d'une condition en cas d'erreur
             salut = "TODO"
             flash('Erreur.')
@@ -57,9 +58,9 @@ def creation_de_compte():
                 flash('Compte bien créé.')
                 return redirect("/", code=303)
             else:
-                return render_template('connexion.jinja', titre_page="CRÉER COMPTE", blueprint="creer_compte", bouton_soumettre="Créer le compte")
+                return render_template('creation_utilisateur.jinja')
     else:
-        return render_template('connexion.jinja', titre_page="CRÉER COMPTE", blueprint="creer_compte", bouton_soumettre="Créer le compte")
+        return render_template('creation_utilisateur.jinja')
 
 
 #@bp_compte.route('/valider_authentifier', methods=['GET', 'POST'])
