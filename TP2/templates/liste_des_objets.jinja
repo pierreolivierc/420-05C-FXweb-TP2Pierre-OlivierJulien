@@ -16,13 +16,11 @@
                         <p class="card-text">{{ o.description }}</p>
                         <div>
                             <a href="/objet/details?id={{ o.id }}" class="btn btn-primary m-2">Voir l'objet</a>
-                            {% if session.admin == 1 %}
-                                <a href="/objet/modifier?id={{ o.id }}" class="btn btn-primary m-2">Modifer</a>
-                            {% endif %}
                             {% if session.courriel == o.proprietaire or session.admin == 1 %}
+                                <a href="/objet/modifier?id={{ o.id }}" class="btn btn-primary m-2">Modifer</a>
                                 <a href="/supprimer_objet?id={{ o.id }}" class="btn btn-primary m-2">Supprimer</a>
                             {% endif %}
-                            {% if session.courriel != o.proprietaire %}
+                            {% if session.courriel != o.proprietaire and (session.admin == 0 or session.admin == 1 )%}
                                 <a href="/troquer_objet?id={{ o.id }}" class="btn btn-primary m-2">Troquer</a>
                             {% endif %}
                         </div>
