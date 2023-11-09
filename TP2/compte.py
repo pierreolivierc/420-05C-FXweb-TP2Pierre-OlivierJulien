@@ -33,44 +33,50 @@ def page_de_connexion():
 
 @bp_compte.route('/creer_compte', methods=["GET", "POST"])
 def creation_de_compte():
-    if request.method == "POST":
-        courriel = (request.form.get("courriel", default=""))
-        mdp = (request.form.get("mdp", default=""))
-        mdp2 = (request.form.get("mdp2", default=""))
-        courriel_valide = utilitaires.verifier_courriel(courriel)
-        mdp_valide = utilitaires.verifier_mot_de_passe(mdp)
-        with bd.creer_connexion() as conn:
-            Courriel = bd.verifier_si_courriel_existe(conn, courriel)
-        if not courriel_valide or not mdp_valide or Courriel or mdp != mdp2:
-            # TODO ajout d'une condition en cas d'erreur
-            if not courriel_valide or Courriel:
-                flash('Erreur: Courriel invalide.')
-            elif not mdp_valide:
-                flash(
-                    'Le mot de passe doit respecter les règles suivantes : Une lettre majuscule, une lettre minuscule, un nombre et avoir une longueur de 8 charactères au minimum')
-            elif mdp != mdp2:
-                flash('Erreur : Les deux mots de passe ne sont pas identiques.')
-            else:
-                flash('Erreur.')
-
-            return render_template('creation_utilisateur.jinja')
-        else:
-            mdp = utilitaires.hacher_mdp(mdp)
-
+    admin = session.get('admin')
+    if admin != 0:
+        if request.method == "POST":
+            courriel = (request.form.get("courriel", default=""))
+            mdp = (request.form.get("mdp", default=""))
+            mdp2 = (request.form.get("mdp2", default=""))
+            courriel_valide = utilitaires.verifier_courriel(courriel)
+            mdp_valide = utilitaires.verifier_mot_de_passe(mdp)
             with bd.creer_connexion() as conn:
-                bd.ajouter_utilisateur(conn, courriel, mdp)
+                Courriel = bd.verifier_si_courriel_existe(conn, courriel)
+            if not courriel_valide or not mdp_valide or Courriel or mdp != mdp2:
+                # TODO ajout d'une condition en cas d'erreur
+                if not courriel_valide or Courriel:
+                    flash('Erreur: Courriel invalide.')
+                elif not mdp_valide:
+                    flash(
+                        'Le mot de passe doit respecter les règles suivantes : Une lettre majuscule, une lettre minuscule, un nombre et avoir une longueur de 8 charactères au minimum')
+                elif mdp != mdp2:
+                    flash('Erreur : Les deux mots de passe ne sont pas identiques.')
+                else:
+                    flash('Erreur.')
 
-            with bd.creer_connexion() as conn:
-                utilisateur = bd.chercher_utilisateur(conn, courriel, mdp)
-
-            if utilisateur != None:
-                creer_session(courriel, utilisateur['admin'])
-                flash('Compte bien créé.')
-                return redirect("/", code=303)
-            else:
                 return render_template('creation_utilisateur.jinja')
+            else:
+                mdp = utilitaires.hacher_mdp(mdp)
+
+                with bd.creer_connexion() as conn:
+                    bd.ajouter_utilisateur(conn, courriel, mdp)
+
+                with bd.creer_connexion() as conn:
+                    utilisateur = bd.chercher_utilisateur(conn, courriel, mdp)
+
+                if utilisateur != None:
+                    if admin != 1:
+                        creer_session(courriel, utilisateur['admin'])
+
+                    flash('Compte bien créé.')
+                    return redirect("/", code=303)
+                else:
+                    return render_template('creation_utilisateur.jinja')
+        else:
+            return render_template('creation_utilisateur.jinja')
     else:
-        return render_template('creation_utilisateur.jinja')
+        abort(403)
 
 
 # @bp_compte.route('/valider_authentifier', methods=['GET', 'POST'])
@@ -115,7 +121,7 @@ def deconnexion():
 
 
 @bp_compte.route('/liste_utilisateur', methods=["GET", "POST"])
-def lister_utilisateur():
+def lister_utilisateur_et_supprimer():
     admin = session.get('admin')
     if admin == 1:
         if (request.method == 'POST'):
@@ -123,7 +129,7 @@ def lister_utilisateur():
             with bd.creer_connexion() as conn:
                 bd.supprimer_utilisateur(conn, courriel)
                 tous_les_utilisateurs = bd.obtenir_tous_les_utilisateur(conn)
-                flash("Utilisateur "+courriel+" a été supprimé.")
+                flash("Utilisateur " + courriel + " a été supprimé.")
             return render_template('/liste_utilisateur.jinja', utilisateur=tous_les_utilisateurs)
         else:
             with bd.creer_connexion() as conn:
