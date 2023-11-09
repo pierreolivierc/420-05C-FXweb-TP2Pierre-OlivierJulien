@@ -69,3 +69,7 @@ def chemain_ajout(nom_image):
 
 def attribuer_src(nom_image):
    return "/" + app.config['ROUTE_VERS_AJOUTS'] + "/" + nom_image
+
+def format_date(date):
+    date = dates.format_date(date, locale=app.config["BABEL_DEFAULT_LOCALE"])
+    return date

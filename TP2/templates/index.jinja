@@ -25,9 +25,20 @@
                      style="width: 18rem;">
                     <img height="300" width="300" src="{{ o.photo }}" class="card-img-top" alt="L'image d'un objet">
                     <div class="card-body">
-                        <h5 class="card-title">{{ o.titre }}</h5>
+                                                <h5 class="card-title">{{ o.titre }}</h5>
                         <p class="card-text">{{ o.description }}</p>
-                        <a href="/details?id={{ o.id }}" class="btn btn-primary">Voir l'objet</a>
+                        <div>
+                            <a href="/objet/details?id={{ o.id }}" class="btn btn-primary m-2">Voir l'objet</a>
+                            {% if session.admin == 1 %}
+                                <a href="/objet/modifier?id={{ o.id }}" class="btn btn-primary m-2">Modifer</a>
+                            {% endif %}
+                            {% if session.courriel == o.proprietaire or session.admin == 1 %}
+                                <a href="/supprimer_objet?id={{ o.id }}" class="btn btn-primary m-2">Supprimer</a>
+                            {% endif %}
+                            {% if session.courriel != o.proprietaire %}
+                                <a href="/troquer_objet?id={{ o.id }}" class="btn btn-primary m-2">Troquer</a>
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
             {% endfor %}

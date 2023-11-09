@@ -20,7 +20,7 @@ def page_de_connexion():
         with bd.creer_connexion() as conn:
             utilisateur = bd.chercher_utilisateur(conn, courriel, mdphacher)
         if utilisateur != None:
-            creer_session(courriel)
+            creer_session(courriel, utilisateur['admin'])
             flash('Connexion réussi.')
             return redirect("/", code=303)
         else:
@@ -62,7 +62,7 @@ def creation_de_compte():
               utilisateur = bd.chercher_utilisateur(conn,courriel, mdp)
 
             if utilisateur != None:
-                creer_session(courriel)
+                creer_session(courriel, utilisateur['admin'])
                 flash('Compte bien créé.')
                 return redirect("/", code=303)
             else:
@@ -105,8 +105,9 @@ def deconnexion():
     return redirect("/", code=303)
 
 
-def creer_session(courriel):
+def creer_session(courriel, admin):
     if session:
         session.clear()
     session.permanent = True
     session['courriel'] = courriel
+    session['admin'] = admin

@@ -19,7 +19,7 @@ def page_liste_des_objets():
     """Gestion de l'affichage de tout les objets."""
     with bd.creer_connexion() as conn:
             objets = bd.obtenir_tous_les_objets(conn)
-    return render_template('index.jinja', objets=objets)
+    return render_template('liste_des_objets.jinja', objets=objets)
 
 
 @bp_objet.route('/ajouter', methods=["GET", "POST"])
@@ -135,11 +135,11 @@ def page_details():
         app.changer_langue("en_CA")
 
     with bd.creer_connexion() as conn:
-        objet = bd.obtenir_un_objet_par_id(conn, id)
+        objet = bd.obtenir_un_objet_par_id(conn, identifiant)
 
-    date = dates.format_date(objet['date'], locale=app.config["BABEL_DEFAULT_LOCALE"])
+    date = app.format_date(objet['date'])
 
-    return render_template('objet.jinja', objet=objet, date=date, )
+    return render_template('objet.jinja', objet=objet, date=date)
 
 
 @bp_objet.route('/modifier', methods=["GET", "POST"])
