@@ -1,6 +1,8 @@
 
 import hashlib, re
 
+from flask import session
+
 
 def hacher_mdp(mdp_en_clair):
     """Prend un mot de passe en clair et lui applique une fonction de hachage"""
@@ -19,3 +21,4 @@ def verifier_courriel(courriel):
         return True
     else:
         return False
+
