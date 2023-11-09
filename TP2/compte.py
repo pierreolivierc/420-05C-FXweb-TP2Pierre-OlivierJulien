@@ -1,14 +1,17 @@
 import datetime
+import hashlib
 import os
 
 from babel import dates
-from flask import Blueprint, abort, render_template, redirect, url_for, request, session
+from flask import Blueprint, abort, render_template, redirect, url_for, request, session, flash
 
 import bd
 import utilitaires
 from utilitaires import hacher_mdp
 
 bp_compte = Blueprint('compte', __name__)
+
+bp_compte.secret_key = 'b51213b260450a05dc8d0619a1e6850dd2e6902c0dcc9b02369749761b4b5f2f'
 
 
 @bp_compte.route('/authentifier')
@@ -27,9 +30,16 @@ def creation_de_compte():
             # TODO ajout d'une condition en cas d'erreur
             salut = "TODO"
         else:
-            mdp_hacher = utilitaires.hacher_mdp(mdp)
+            mdp = utilitaires.hacher_mdp(mdp)
             with bd.creer_connexion() as conn:
                 bd.ajouter_utilisateur(conn, courriel, mdp)
+
+            with bd.creer_connexion() as conn:
+              utilisateur = bd.chercher_utilisateur(conn,courriel, mdp)
+
+            if utilisateur != None:
+                flash('Compte bien créé.')
+                return render_template("/", code=303)
     else:
         return render_template('connexion.jinja', titre_page="CRÉER COMPTE", blueprint="creer_compte", bouton_soumettre="Créer le compte")
 
