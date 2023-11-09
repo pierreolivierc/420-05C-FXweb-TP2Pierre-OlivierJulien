@@ -139,3 +139,12 @@ def modifier_un_objet(conn, titre, description, src, categorie, id):
                 }
             )
 
+
+def supprimer_utilisateur(conn, courriel):
+    with conn.get_curseur() as curseur:
+        curseur.execute(
+            'DELETE FROM `utilisateur` WHERE `courriel` = %(courriel)s;',
+            {
+                'courriel': courriel,
+            }
+        )
