@@ -34,7 +34,7 @@
                                 <a href="/supprimer_objet/{{ o.id }}" class="btn btn-primary m-2">Supprimer</a>
                             {% endif %}
                             {% if session.courriel != o.proprietaire and (session.admin == 0 or session.admin == 1 ) %}
-                                <a href="/objet/troquer_objet/{{ o.id }}" class="btn btn-primary m-2">Troquer</a>
+                                <a href="/objet/troqueur/{{ o.id }}" class="btn btn-primary m-2">Troquer</a>
                             {% endif %}
                         </div>
                     </div>

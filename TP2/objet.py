@@ -222,6 +222,6 @@ def page_editer(id):
         titre_form=titre_form
     )
 
-@bp_objet.route('/troquer', methods=["GET", "POST"])
-def troquer():
-    render_template('troquer.jinja')
+@bp_objet.route('/troqueur/<int:id>', methods=["GET", "POST"])
+def troquer(id):
+    return  render_template('troqueur.jinja')
