@@ -11,12 +11,22 @@ from utilitaires import hacher_mdp
 
 bp_compte = Blueprint('compte', __name__)
 
-bp_compte.secret_key = 'b51213b260450a05dc8d0619a1e6850dd2e6902c0dcc9b02369749761b4b5f2f'
-
-
-@bp_compte.route('/authentifier')
+@bp_compte.route('/authentifier', methods=["GET", "POST"])
 def page_de_connexion():
-    return render_template('connexion.jinja', titre_page="CONNEXION", blueprint="authentifier", bouton_soumettre= "Connecter")
+    if (request.method == 'POST') :
+        courriel = (request.form.get("courriel", default=""))
+        mdp = (request.form.get("mdp", default=""))
+        mdphacher = utilitaires.hacher_mdp(mdp)
+        with bd.creer_connexion() as conn:
+            utilisateur = bd.chercher_utilisateur(conn, courriel, mdphacher)
+        if utilisateur != None:
+            creer_session(courriel)
+            flash('Connexion réussi.')
+            return redirect("/", code=303)
+        else:
+            return render_template('connexion.jinja', titre_page="CONNEXION", blueprint="authentifier", bouton_soumettre="Connecter")
+    else:
+        return render_template('connexion.jinja', titre_page="CONNEXION", blueprint="authentifier", bouton_soumettre= "Connecter")
 
 
 @bp_compte.route('/creer_compte', methods=["GET", "POST"])
@@ -26,11 +36,16 @@ def creation_de_compte():
         mdp = (request.form.get("mdp", default=""))
         courriel_valide = utilitaires.verifier_courriel(courriel)
         mdp_valide = utilitaires.verifier_mot_de_passe(mdp)
-        if not courriel_valide or not mdp_valide:
+        with bd.creer_connexion() as conn:
+            Courriel = bd.verifier_si_courriel_existe(conn, courriel)
+        if not courriel_valide or not mdp_valide or Courriel :
             # TODO ajout d'une condition en cas d'erreur
             salut = "TODO"
+            flash('Erreur.')
+            return redirect("/", code=303)
         else:
             mdp = utilitaires.hacher_mdp(mdp)
+
             with bd.creer_connexion() as conn:
                 bd.ajouter_utilisateur(conn, courriel, mdp)
 
@@ -38,22 +53,32 @@ def creation_de_compte():
               utilisateur = bd.chercher_utilisateur(conn,courriel, mdp)
 
             if utilisateur != None:
+                creer_session(courriel)
                 flash('Compte bien créé.')
-                return render_template("/", code=303)
+                return redirect("/", code=303)
+            else:
+                return render_template('connexion.jinja', titre_page="CRÉER COMPTE", blueprint="creer_compte", bouton_soumettre="Créer le compte")
     else:
         return render_template('connexion.jinja', titre_page="CRÉER COMPTE", blueprint="creer_compte", bouton_soumettre="Créer le compte")
 
 
-@bp_compte.route('/valider_authentifier', methods=['GET', 'POST'])
-def authentifier():
-    """Pour effectuer une authentification"""
-    erreur = False
-    if (request.method == 'POST') :
-        courriel = (request.form.get("courriel", default=""))
-        mdp = (request.form.get("mdp", default=""))
-        mdphacher = utilitaires.hacher_mdp(mdp)
-        with bd.creer_connexion() as conn:
-            utilisateur = bd.chercher_utilisateur(conn, courriel, mdphacher)
+#@bp_compte.route('/valider_authentifier', methods=['GET', 'POST'])
+#def authentifier():
+#    """Pour effectuer une authentification"""
+#    erreur = False
+#     if (request.method == 'POST') :
+#        courriel = (request.form.get("courriel", default=""))
+#        mdp = (request.form.get("mdp", default=""))
+#        mdphacher = utilitaires.hacher_mdp(mdp)
+#        with bd.creer_connexion() as conn:
+#            utilisateur = bd.chercher_utilisateur(conn, courriel, mdphacher)
+#        if utilisateur != None:
+#            creer_session(courriel)
+#            flash('Connexion réussi.')
+#            return redirect("/", code=303)
+#        else:
+#            pass
+
 
 #TODO corriger si pas erreur ou le faire directement dans bd.py?
     #return render_template(
@@ -67,11 +92,12 @@ def authentifier():
 def deconnexion():
     """Permet à l'utilisateur de se deconnecter"""
     session.clear()
-    with bd.creer_connexion() as conn:
-            objets = bd.obtenir_les_premier_objets(conn)
-    return render_template('index.jinja', objets=objets)
+    flash('Déconnection réussi.')
+    return redirect("/", code=303)
 
 
-@bp_compte.route('/creation_utilisateur')
-def nouveau_utilisateur():
-    return render_template('creation_utilisateur.jinja')
+def creer_session(courriel):
+    if session:
+        session.clear()
+    session.permanent = True
+    session['courriel'] = courriel

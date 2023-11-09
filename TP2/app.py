@@ -29,6 +29,8 @@ app.config['CHEMIN_VERS_AJOUTS'] = os.path.join(
 app.register_blueprint(bp_objet, url_prefix='/objet')
 app.register_blueprint(bp_compte, url_prefix='/compte')
 
+app.secret_key = 'b51213b260450a05dc8d0619a1e6850dd2e6902c0dcc9b02369749761b4b5f2f'
+
 @app.route('/')
 def page_accueil():
     """Gestion de la page d'accuil."""

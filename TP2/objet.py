@@ -25,68 +25,72 @@ def page_liste_des_objets():
 @bp_objet.route('/ajouter', methods=["GET", "POST"])
 def page_ajouter_un_objet():
     """Gestion de l'ajout et la modification d'un objet."""
-    action = "/objet/ajouter"
-    method = "POST"
-    id = 0
-    classe_titre = ""
-    classe_description = ""
-    nom_image = ""
-    titre_form = "Ajouter un objet :"
+    if session.get('courriel'):
+        action = "/objet/ajouter"
+        method = "POST"
+        id = 0
+        classe_titre = ""
+        classe_description = ""
+        nom_image = ""
+        titre_form = "Ajouter un objet :"
 
-    if request.method == "POST":
-        titre = (request.form.get("titre", default="")).strip()
-        description = (request.form.get("description", default="")).strip()
-        categorie = request.form.get("categorie", default="")
-        fichier = request.files['image']
-        if not fichier:
-            nom_image = "vide.jpg"
+        if request.method == "POST":
+            titre = (request.form.get("titre", default="")).strip()
+            description = (request.form.get("description", default="")).strip()
+            categorie = request.form.get("categorie", default="")
+            fichier = request.files['image']
+            if not fichier:
+                nom_image = "vide.jpg"
+            else:
+                nom_image = (str(datetime.now().timestamp()) + ".jpg")
         else:
-            nom_image = (str(datetime.now().timestamp()) + ".jpg")
+            titre = ""
+            description = ""
+            fichier = ""
 
+        if request.method == "POST":
+
+            if not regex_paterne_titre.fullmatch(titre):
+                classe_titre = "is-invalid"
+
+            if not regex_paterne_description.fullmatch(description):
+                classe_description = "is-invalid"
+
+            if regex_paterne_titre.fullmatch(titre) and regex_paterne_description.fullmatch(
+                    description) and regex_paterne_photo.fullmatch(nom_image):
+                if nom_image != "vide.jpg":
+                    chemin_complet = app.chemain_ajout(nom_image)
+                    fichier.save(chemin_complet)
+
+                src = app.attribuer_src(nom_image)
+
+                with bd.creer_connexion() as conn:
+                    bd.ajouter_un_objet(conn, titre, description, src, categorie, session.get('courriel'))
+
+                with bd.creer_connexion() as conn:
+                        id = bd.obtenir_id_dernier_objet_ajoute(conn)
+
+                if id != None:
+                    flash('Objet ajouté.')
+                    return redirect("/", code=303)
+                else:
+                    pass
+                #Todo message derreur
+
+        return render_template(
+            'ajouter_et_editer_un_objet.jinja',
+            titre=titre,
+            description=description,
+            classe_titre=classe_titre,
+            classe_description=classe_description,
+            fonction="Ajouter",
+            action=action,
+            method=method,
+            titre_form=titre_form
+        )
     else:
-        titre = ""
-        description = ""
-        fichier = ""
-
-    if request.method == "POST":
-
-        if not regex_paterne_titre.fullmatch(titre):
-            classe_titre = "is-invalid"
-
-        if not regex_paterne_description.fullmatch(description):
-            classe_description = "is-invalid"
-
-        if regex_paterne_titre.fullmatch(titre) and regex_paterne_description.fullmatch(
-                description) and regex_paterne_photo.fullmatch(nom_image):
-            if nom_image != "vide.jpg":
-                chemin_complet = app.chemain_ajout(nom_image)
-                fichier.save(chemin_complet)
-
-            src = app.attribuer_src(nom_image)
-
-            with bd.creer_connexion() as conn:
-                bd.ajouter_un_objet(conn, titre, description, src, categorie)
-
-            with bd.creer_connexion() as conn:
-                    id = bd.obtenir_id_dernier_objet_ajoute(conn)
-
-            #flash('Objet ajouté.')
-            return render_template("/", code=303)
-            #return redirect(
-            #    "/objet/confirmation?titre=" + titre + "&description=" + description + "&photo=" + src + "&categorie=" + categorie + "&id=" + str(
-            #        id['id']), code=303)
-
-    return render_template(
-        'ajouter_et_editer_un_objet.jinja',
-        titre=titre,
-        description=description,
-        classe_titre=classe_titre,
-        classe_description=classe_description,
-        fonction="Ajouter",
-        action=action,
-        method=method,
-        titre_form=titre_form
-    )
+        flash('Bien essayé.')
+        return redirect("/", code=303)
 
 
 @bp_objet.route('/confirmation')

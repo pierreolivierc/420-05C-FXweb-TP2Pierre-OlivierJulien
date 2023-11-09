@@ -54,16 +54,17 @@ def obtenir_tous_les_objets(conn):
         return curseur.fetchall()
 
 
-def ajouter_un_objet(conn, titre, description, src, categorie):
+def ajouter_un_objet(conn, titre, description, src, categorie, courriel):
     """Ajouter un nouvel objet"""
     with conn.get_curseur() as curseur:
         curseur.execute(
-            'INSERT INTO `objets` (`id`, `titre`, `description`, `photo`, `categorie`, `date`, `Proprietaire`) VALUES (NULL, %(titre)s, %(description)s, %(image)s, %(categorie)s, CURRENT_DATE, 1);',
+            'INSERT INTO `objets` (`id`, `titre`, `description`, `photo`, `categorie`, `date`, `Proprietaire`) VALUES (NULL, %(titre)s, %(description)s, %(image)s, %(categorie)s, CURRENT_DATE, %(courriel)s);',
             {
                 'titre': titre,
                 'description': description,
                 'image': src,
-                'categorie': categorie
+                'categorie': categorie,
+                'courriel': courriel
             }
         )
 
@@ -77,6 +78,18 @@ def ajouter_utilisateur(conn, courriel, mdp):
                 'mdp': mdp
             }
         )
+
+
+def verifier_si_courriel_existe(conn, courriel):
+    with conn.get_curseur() as curseur:
+        curseur.execute(
+            'SELECT utilisateur.courriel FROM utilisateur WHERE utilisateur.courriel = %(courriel)s;',
+            {
+                'courriel': courriel,
+            }
+        )
+        return curseur.fetchone()
+
 
 
 def chercher_utilisateur(conn, courriel, mdp):
