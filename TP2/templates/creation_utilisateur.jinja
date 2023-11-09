@@ -7,6 +7,13 @@
 {% block contenu %}
 
     <section class="m-4">
+        {% with message = get_flashed_messages() %}
+            {% if message %}
+                <div class="retroactions bg-success text-black m-2 p-2 rounded fs-2">
+                    <p>{{ message[0] }}</p>
+                </div>
+            {% endif %}
+        {% endwith %}
         <div class="d-flex justify-content-center">
             <form action="/compte/creer_compte" method="post" class="border border-dark p-3 rounded fs-3 m-2">
                 <div class="d-flex flex-column">
