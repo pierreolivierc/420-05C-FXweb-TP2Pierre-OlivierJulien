@@ -1,7 +1,7 @@
-import datetime
 import os
 
 from babel import dates
+from datetime import datetime
 from flask import Blueprint, abort, render_template, redirect, url_for, request, session, flash
 import re
 
@@ -43,12 +43,6 @@ def page_ajouter_un_objet():
                 nom_image = "vide.jpg"
             else:
                 nom_image = (str(datetime.now().timestamp()) + ".jpg")
-        else:
-            titre = ""
-            description = ""
-            fichier = ""
-
-        if request.method == "POST":
 
             if not regex_paterne_titre.fullmatch(titre):
                 classe_titre = "is-invalid"
@@ -76,6 +70,10 @@ def page_ajouter_un_objet():
                 else:
                     pass
                 #Todo message derreur
+        else:
+            titre = ""
+            description = ""
+            fichier = ""
 
         return render_template(
             'ajouter_et_editer_un_objet.jinja',
