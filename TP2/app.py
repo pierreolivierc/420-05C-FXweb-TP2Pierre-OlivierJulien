@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, abort
+from flask import Flask, render_template, request, redirect, abort, flash
 # from flask_babel import Babel
 from babel import numbers, dates
 from datetime import datetime
@@ -27,7 +27,7 @@ app.config['CHEMIN_VERS_AJOUTS'] = os.path.join(
     *app.config['MORCEAUX_VERS_AJOUTS'])
 
 app.register_blueprint(bp_objet, url_prefix='/objet')
-app.register_blueprint(bp_compte, url_prefix='/compte')
+app.register_blueprint(bp_compte, url_prefix='/comptes')
 
 app.secret_key = 'b51213b260450a05dc8d0619a1e6850dd2e6902c0dcc9b02369749761b4b5f2f'
 
@@ -50,6 +50,7 @@ def mauvaise_requete(e):
 @app.errorhandler(401)
 def mauvaise_requete(e):
     """Gestion de l'erreur 400"""
+    flash('401')
     erreur = e.description
     return render_template('erreur.jinja', message="Vous n'êtes pas authentifié.", erreur=erreur), 400
 

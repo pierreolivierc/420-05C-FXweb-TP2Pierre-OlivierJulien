@@ -6,6 +6,14 @@
 
 {% block contenu %}
 
+    {% with message = get_flashed_messages() %}
+        {% if message[0] == "401" %}
+            <div class="m-2 border border-dark rounded-3 p-3">
+                <a class="btn btn-primary" href="/comptes/authentifier">Se connecter</a>
+            </div>
+        {% endif %}
+    {% endwith %}
+
     <div class="d-flex justify-content-center p-5">
         <div class="m-2 border border-dark rounded-3 p-3">
             <h1>{{ message }}</h1>

@@ -44,24 +44,24 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 {% if not session.courriel %}
                     <li class="nav-item">
-                        <a class="nav-link" href="/compte/creer_compte">Créer un compte</a>
+                        <a class="nav-link" href="/comptes/creer_compte">Créer un compte</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/compte/authentifier">Se connecter</a>
+                        <a class="nav-link" href="/comptes/authentifier">Se connecter</a>
                     </li>
                 {% elif session.admin == 1 %}
                     <li class="nav-item">
-                        <a class="nav-link" href="/compte/creer_compte">Créer un compte</a>
+                        <a class="nav-link" href="/comptes/creer_compte">Créer un compte</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/compte/liste_utilisateur">Liste des utilisateurs</a>
+                        <a class="nav-link" href="/comptes/liste_utilisateur">Liste des utilisateurs</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/compte/deconnecter">Se deconnecter</a>
+                        <a class="nav-link" href="/comptes/deconnecter">Se deconnecter</a>
                     </li>
                 {% else %}
                     <li class="nav-item">
-                        <a class="nav-link" href="/compte/deconnecter">Se deconnecter</a>
+                        <a class="nav-link" href="/comptes/deconnecter">Se deconnecter</a>
                     </li>
                 {% endif %}
             </ul>

@@ -9,7 +9,7 @@ import bd
 import utilitaires
 from utilitaires import hacher_mdp
 
-bp_compte = Blueprint('compte', __name__)
+bp_compte = Blueprint('comptes', __name__)
 
 
 @bp_compte.route('/authentifier', methods=["GET", "POST"])
