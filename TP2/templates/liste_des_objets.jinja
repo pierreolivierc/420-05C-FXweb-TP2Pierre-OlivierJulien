@@ -16,7 +16,7 @@
                         <p class="card-text">{{ o.description }}</p>
                         <div>
                             <a href="/objet/details/{{ o.id }}" class="btn btn-primary m-2">Voir l'objet</a>
-                            {% if session.courriel == o.proprietaire %}
+                            {% if session.courriel == o.proprietaire or session.admin == 1 %}
                                 <a href="/objet/modifier/{{ o.id }}" class="btn btn-primary m-2">Modifer</a>
                                 <a href="/objet/supprimer_objet/{{ o.id }}" class="btn btn-primary m-2">Supprimer</a>
                             {% endif %}
