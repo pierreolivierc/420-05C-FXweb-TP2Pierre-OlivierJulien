@@ -65,9 +65,9 @@
                     </li>
                 {% endif %}
             </ul>
-            <form class="d-flex mx-2">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-light" type="submit">Search</button>
+            <form method="post" action="http://127.0.0.1:5000/objet/rechercher" class="d-flex mx-2">
+                <input id="contenu" name="contenu" class="form-control me-2" type="search" placeholder="Chercher" aria-label="Search">
+                <button class="btn btn-outline-light" type="submit">Chercher</button>
             </form>
         </div>
     </div>
@@ -83,8 +83,8 @@
 
 <footer>
     <div class="d-flex justify-content-between bg-secondary">
-        <p class="m-2 text-decoration-underline mx-5">Par : Julien Beaumont</p>
-        <p class="m-2 text-decoration-underline mx-5">Pour : TP-1 420-05C-FX DÉVELOPPEMENT D'APPLICATIONS WEB </p>
+        <p class="m-2 text-decoration-underline mx-5">Par : Julien Beaumont et Pierre-Olivier Cadeau</p>
+        <p class="m-2 text-decoration-underline mx-5">Pour : TP-2 420-05C-FX DÉVELOPPEMENT D'APPLICATIONS WEB </p>
     </div>
 </footer>
 

@@ -132,6 +132,16 @@ def obtenir_un_objet_par_id(conn, id):
             return curseur.fetchone()
 
 
+def obtenir_objets_par_recherche(conn, contenue):
+    with conn.get_curseur() as curseur:
+        curseur.execute(
+            'SELECT * FROM objets WHERE titre LIKE %(contenue)s',
+            {
+                'contenue': contenue
+            }
+        )
+    return curseur.fetchall()
+
 def obtenir_id_objet(conn, courriel):
     with conn.get_curseur() as curseur:
         curseur.execute(
@@ -162,6 +172,8 @@ def modifier_un_objet(conn, titre, description, src, categorie, id):
                     'id': id
                 }
             )
+
+
 
 
 def modifier_propriétaire_objet(conn, courriel, id):

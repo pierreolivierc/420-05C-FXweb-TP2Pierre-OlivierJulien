@@ -95,36 +95,6 @@ def page_ajouter_un_objet():
         abort(401)
 
 
-@bp_objet.route('/confirmation')
-def page_confirmation():
-    """Gestion de la confimation d'une action. (POST-Redirect-GET)"""
-    titre = request.args.get('titre', type=str)
-    description = request.args.get('description', type=str)
-    photo = request.args.get('photo', type=str)
-    categorie = request.args.get('categorie', type=int)
-    id = request.args.get('id', type=int)
-
-    if not titre:
-        abort(400, "Paramère 'nom' est manquant.")
-    if not description:
-        abort(400, "Paramère 'description' est manquant.")
-    if not categorie:
-        abort(400, "Paramère 'categorie' est manquant.")
-
-        with bd.creer_connexion() as conn:
-            objet = bd.obtenir_un_objet_par_id(conn, id)
-
-    if objet['titre'] == titre and objet['description'] == description and objet["photo"] == photo and objet[
-        "categorie"] == categorie:
-        message = "L'opération a bien été effectuée.."
-        classe = "bg-success"
-    else:
-        message = "L'opération n'a pas été effectuée."
-        classe = "bg-danger"
-
-    return render_template('confirmation.jinja', message=message, classe=classe)
-
-
 @bp_objet.route('/details/<int:id>', methods=["GET"])
 def page_details(id):
     """Gestion de page personnalisée d'un objet."""
@@ -183,14 +153,21 @@ def page_editer(id):
                 )
                 fichier.save(chemin_complet)
 
-            src = "/" + app.config['ROUTE_VERS_AJOUTS'] + "/" + nom_image
+            src = app.attribuer_src(nom_image)
 
             with bd.creer_connexion() as conn:
                 bd.modifier_un_objet(conn, titre, description, src, categorie, id)
 
-            return redirect(
-                "/confirmation?titre=" + titre + "&description=" + description + "&photo=" + src + "&categorie=" + categorie + "&id=" + str(
-                    id), code=303)
+            with bd.creer_connexion() as conn:
+              objet = bd.obtenir_un_objet_par_id(conn, id)
+
+            if objet['titre'] == titre and objet['description'] == description and objet['photo'] == src and objet['categorie'] == int(categorie):
+                flash('Objet modifié.')
+                return redirect("/", code=303)
+            else:
+                pass
+                # Todo message derreur
+
 
     with bd.creer_connexion() as conn:
         objet = bd.obtenir_un_objet_par_id(conn, id)
@@ -258,3 +235,13 @@ def supprimer_objet(id):
         bd.supprimer_objet(conn, id)
     flash("L'objet a bien été supprimé.")
     return redirect("/", code=303)
+
+
+
+@bp_objet.route('/rechercher', methods=["POST"])
+def chercher_des_objets():
+    contenu = request.form.get('contenu')
+    contenu = "%" + contenu + "%"
+    with bd.creer_connexion() as conn:
+       objets = bd.obtenir_objets_par_recherche(conn, contenu)
+    return render_template('liste_des_objets.jinja', objets=objets)

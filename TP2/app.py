@@ -7,7 +7,7 @@ import os
 import bd
 import re
 
-from compte import bp_compte
+from comptes import bp_compte
 from objet import bp_objet
 
 app = Flask(__name__)
