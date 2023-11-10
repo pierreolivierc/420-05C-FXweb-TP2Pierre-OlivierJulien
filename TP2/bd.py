@@ -41,7 +41,7 @@ def get_curseur(self):
 
 
 def obtenir_les_premier_objets(conn):
-    """Retourne les cinq dernier objets ajoutés"""
+    """Retourne les cinq derniers objets ajoutés"""
     with conn.get_curseur() as curseur:
         curseur.execute('SELECT * FROM `objets` ORDER BY date DESC LIMIT 5;')
         return curseur.fetchall()
