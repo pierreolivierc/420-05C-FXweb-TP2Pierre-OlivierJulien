@@ -54,6 +54,13 @@ def obtenir_tous_les_objets(conn):
         return curseur.fetchall()
 
 
+def obtenir_objets_utilisateur(conn, courriel):
+    """Retourne tous les objets de l'utilisateur """
+    with conn.get_curseur() as curseur:
+        curseur.execute('SELECT * FROM `objets` WHERE proprietaire = %(courriel)s ORDER BY id DESC;')
+        return curseur.fetchall()
+
+
 def ajouter_un_objet(conn, titre, description, src, categorie, courriel):
     """Ajouter un nouvel objet"""
     with conn.get_curseur() as curseur:

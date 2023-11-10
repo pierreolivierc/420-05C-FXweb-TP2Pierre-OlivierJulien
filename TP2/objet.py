@@ -224,7 +224,13 @@ def page_editer(id):
 
 @bp_objet.route('/troqueur/<int:id>', methods=["GET", "POST"])
 def troquer(id):
-    return  render_template('troqueur.jinja')
+    courriel = session.get('courriel')
+    with bd.creer_connexion() as conn:
+        objets = bd.obtenir_objets_utilisateur(conn, courriel)
+    if objets is not None:
+        return render_template('troqueur.jinja', objets=objets)
+    else:
+        return render_template('troqueur.jinja')
 
 @bp_objet.route('/supprimer_objet/<int:id>', methods=["GET", "POST"])
 def supprimer_objet(id):

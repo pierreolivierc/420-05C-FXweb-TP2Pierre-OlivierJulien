@@ -19,7 +19,9 @@
                 <div class="d-flex flex-column">
                     <label for="lst_objet" class="form-label">Liste d'objet détenu:</label>
                     <select id="lst_objet" name="lst_objet">
-                        <option value="option1">Option 1</option>
+                        {% for o in objets %}
+                        <option value="option1">{{ o.titre }}</option>
+                        {% endfor %}
                     </select>
                 </div>
                 <div class="d-flex flex-row-reverse m-3">
