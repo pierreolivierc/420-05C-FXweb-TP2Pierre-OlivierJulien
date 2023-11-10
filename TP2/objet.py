@@ -1,12 +1,17 @@
+
+from datetime import datetime
 import os
+import re
 
 from babel import dates
-from datetime import datetime
-from flask import Blueprint, abort, render_template, redirect, url_for, request, session, flash
-import re
+from flask import (
+    Blueprint, abort, render_template, redirect,
+    url_for, request, session, flash
+)
 
 import app
 import bd
+
 
 regex_paterne_titre = re.compile(r"([aA-zZ\s]{1,50})")
 regex_paterne_description = re.compile(r"(^.{5,2000}$)")
@@ -160,7 +165,7 @@ def page_editer(id):
         description = ""
         fichier = ""
 
-    action = "/modifier?id=" + str(id)
+    action = "/objet/modifier/" + str(id)
 
     if request.method == "POST":
 
@@ -220,17 +225,28 @@ def page_editer(id):
         titre_form=titre_form
     )
 
+
 @bp_objet.route('/troqueur/<int:id>', methods=["GET", "POST"])
-def troquer(id):
-    courriel = session.get('courriel')
-    with bd.creer_connexion() as conn:
-        objets = bd.obtenir_objets_utilisateur(conn, courriel)
-    if objets is not None:
-        return render_template('troqueur.jinja', objets=objets)
+def troqueur(id):
+    if request.method == "POST":
+        objet_selectionner = request.form.get("lst_objet", default=None)
+        if objet_selectionner is None:
+            flash('Vous ne pouvez pas échanger un objet contre rien')
+            return redirect("/", code=303)
+        else:
+            courriel = session.get('courriel')
+            with bd.creer_connexion() as conn:
+                bd.modifier_propriétaire_objet(conn,courriel, id)
     else:
+        courriel = session.get('courriel')
+        with bd.creer_connexion() as conn:
+            objets = bd.obtenir_objets_utilisateur(conn, courriel)
+        if objets is not None:
+            return render_template('troqueur.jinja', objets=objets)
         return render_template('troqueur.jinja')
 
-@bp_objet.route('/supprimer_objet/<int:id>', methods=["GET", "POST"])
+
+@bp_objet.route('/supprimer_objet/<int:id>')
 def supprimer_objet(id):
     with bd.creer_connexion() as conn:
         bd.supprimer_objet(conn, id)

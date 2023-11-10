@@ -57,7 +57,12 @@ def obtenir_tous_les_objets(conn):
 def obtenir_objets_utilisateur(conn, courriel):
     """Retourne tous les objets de l'utilisateur """
     with conn.get_curseur() as curseur:
-        curseur.execute('SELECT * FROM `objets` WHERE proprietaire = %(courriel)s ORDER BY id DESC;')
+        curseur.execute(
+            'SELECT * FROM `objets` WHERE proprietaire = %(courriel)s ',
+            {
+                'courriel': courriel,
+            }
+        )
         return curseur.fetchall()
 
 
@@ -147,6 +152,17 @@ def modifier_un_objet(conn, titre, description, src, categorie, id):
             )
 
 
+def modifier_propriétaire_objet(conn, courriel, id):
+    with conn.get_curseur() as curseur:
+        curseur.execute(
+            'UPDATE `objets` SET  `proprietaire` = %(courriel)s WHERE `objets`.`id` = %(id)s;',
+            {
+                'courriel': courriel,
+                'id': id
+            }
+        )
+
+
 def supprimer_utilisateur(conn, courriel):
     with conn.get_curseur() as curseur:
         curseur.execute(
@@ -155,6 +171,7 @@ def supprimer_utilisateur(conn, courriel):
                 'courriel': courriel,
             }
         )
+
 
 def supprimer_objet(conn, id):
     with conn.get_curseur() as curseur:
