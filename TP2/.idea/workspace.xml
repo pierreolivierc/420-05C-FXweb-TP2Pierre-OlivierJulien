@@ -6,9 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="3fa62e0a-c172-49f5-8316-1b4d50820da7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bd.py" beforeDir="false" afterPath="$PROJECT_DIR$/bd.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/objet.py" beforeDir="false" afterPath="$PROJECT_DIR$/objet.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/troqueur.jinja" beforeDir="false" afterPath="$PROJECT_DIR$/templates/troqueur.jinja" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,7 +117,7 @@
       <workItem from="1699548132582" duration="3547000" />
       <workItem from="1699554516905" duration="13621000" />
       <workItem from="1699574988075" duration="50000" />
-      <workItem from="1699627174269" duration="9888000" />
+      <workItem from="1699627174269" duration="10057000" />
     </task>
     <servers />
   </component>
