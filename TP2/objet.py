@@ -232,5 +232,7 @@ def troquer(id):
 
 @bp_objet.route('/supprimer_objet/<int:id>', methods=["GET", "POST"])
 def supprimer_objet(id):
-    ##TODO supprimer objet
-    return  render_template('index.jinja')
+    with bd.creer_connexion() as conn:
+        bd.supprimer_objet(conn, id)
+    flash("L'objet a bien été supprimé.")
+    return redirect("/", code=303)
