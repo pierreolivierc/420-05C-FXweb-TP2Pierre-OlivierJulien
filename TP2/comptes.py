@@ -75,32 +75,7 @@ def creation_de_compte():
             return render_template('creation_utilisateur.jinja')
     else:
         abort(403)
-
-
-# @bp_compte.route('/valider_authentifier', methods=['GET', 'POST'])
-# def authentifier():
-#    """Pour effectuer une authentification"""
-#    erreur = False
-#     if (request.method == 'POST') :
-#        courriel = (request.form.get("courriel", default=""))
-#        mdp = (request.form.get("mdp", default=""))
-#        mdphacher = utilitaires.hacher_mdp(mdp)
-#        with bd.creer_connexion() as conn:
-#            utilisateur = bd.chercher_utilisateur(conn, courriel, mdphacher)
-#        if utilisateur != None:
-#            creer_session(courriel)
-#            flash('Connexion réussi.')
-#            return redirect("/", code=303)
-#        else:
-#            pass
-
-
-# TODO corriger si pas erreur ou le faire directement dans bd.py?
-# return render_template(
-# 'compte/authentifier.jinja',
-# courriel=courriel,
-# erreur=erreur
-# )
+        
 
 def creer_session(courriel, admin):
     if session:
