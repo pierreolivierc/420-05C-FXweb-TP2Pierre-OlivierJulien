@@ -236,14 +236,20 @@ def troqueur(id):
         else:
             courriel = session.get('courriel')
             with bd.creer_connexion() as conn:
-                bd.modifier_propriétaire_objet(conn,courriel, id)
+                courriel_vendeur = bd.recuperer_proprietaire_objet(conn,id)
+                id_vendeur = bd.obtenir_id_objet(conn, courriel)
+                bd.modifier_propriétaire_objet(conn, courriel, id)
+                bd.modifier_propriétaire_objet(conn,courriel_vendeur['proprietaire'], id_vendeur['id'])
+            flash("Vous avez bien échanger l'objet")
+            return redirect("/", code=303)
     else:
         courriel = session.get('courriel')
         with bd.creer_connexion() as conn:
             objets = bd.obtenir_objets_utilisateur(conn, courriel)
         if objets is not None:
-            return render_template('troqueur.jinja', objets=objets)
-        return render_template('troqueur.jinja')
+            return render_template('troqueur.jinja', objets=objets, id_objet=id)
+        flash("Vous n'avez pas d'objet à échanger.")
+        return redirect("/", code=303)
 
 
 @bp_objet.route('/supprimer_objet/<int:id>')

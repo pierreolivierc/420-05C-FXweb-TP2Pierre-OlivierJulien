@@ -15,7 +15,7 @@
             {% endif %}
         {% endwith %}
         <div class="d-flex justify-content-center">
-            <form action="/objet/troqueur" method="post" class="border border-dark p-3 rounded fs-3 m-2">
+            <form action="/objet/troqueur/{{ id_objet }}" method="post" class="border border-dark p-3 rounded fs-3 m-2">
                 <div class="d-flex flex-column">
                     <label for="lst_objet" class="form-label">Liste d'objet détenu:</label>
                     <select id="lst_objet" name="lst_objet">

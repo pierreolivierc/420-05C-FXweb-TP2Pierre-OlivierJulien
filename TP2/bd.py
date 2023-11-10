@@ -132,6 +132,18 @@ def obtenir_un_objet_par_id(conn, id):
             return curseur.fetchone()
 
 
+def obtenir_id_objet(conn, courriel):
+    with conn.get_curseur() as curseur:
+        curseur.execute(
+            'SELECT id FROM objets WHERE proprietaire = %(courriel)s',
+            {
+                'courriel': courriel
+            }
+        )
+        return curseur.fetchone()
+
+
+
 def obtenir_tous_les_utilisateur(conn):
     with conn.get_curseur() as curseur:
         curseur.execute('SELECT * FROM `utilisateur`')
@@ -161,6 +173,17 @@ def modifier_propriétaire_objet(conn, courriel, id):
                 'id': id
             }
         )
+
+
+def recuperer_proprietaire_objet(conn, id):
+    with conn.get_curseur() as curseur:
+        curseur.execute(
+            'SELECT proprietaire FROM `objets` WHERE `id` = %(id)s',
+            {
+                'id': id
+            }
+        )
+        return curseur.fetchone()
 
 
 def supprimer_utilisateur(conn, courriel):
