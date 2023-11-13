@@ -49,17 +49,16 @@ def mauvaise_requete(e):
 
 @app.errorhandler(401)
 def mauvaise_requete(e):
-    """Gestion de l'erreur 400"""
+    """Gestion de l'erreur 401"""
     flash('401')
     erreur = e.description
-    return render_template('erreur.jinja', message="Vous n'êtes pas authentifié.", erreur=erreur), 400
-
+    return render_template('erreur.jinja', message="Vous n'êtes pas authentifié.", erreur=erreur), 401
 
 @app.errorhandler(403)
 def mauvaise_requete(e):
     """Gestion de l'erreur 403"""
     erreur = e.description
-    return render_template('erreur.jinja', message="Vous n'avez pas l'autorisation pour accéder à cette page", erreur=erreur), 400
+    return render_template('erreur.jinja', message="Vous n'avez pas l'autorisation pour accéder à cette page", erreur=erreur), 403
 
 @app.errorhandler(404)
 def mauvaise_requete(e):

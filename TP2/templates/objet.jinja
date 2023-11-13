@@ -3,8 +3,8 @@
 {% block contenu %}
 
     <div class="d-flex justify-content-center">
-        <a class="btn btn-success m-2 p-2 border border-dark" href="/objet/details?langue=fr&id= {{ objet.id }}" class="m-2 mx-5">fr_CA</a>
-        <a class="btn btn-success m-2 p-2 border border-dark" href="/objet/details?langue=en&id= {{ objet.id }}" class="m-2 mx-5">en_CA</a>
+        <a class="btn btn-success m-2 p-2 border border-dark" href="/objet/details/{{ objet.id }}?langue=fr" class="m-2 mx-5">fr_CA</a>
+        <a class="btn btn-success m-2 p-2 border border-dark" href="/objet/details/{{ objet.id }}?langue=en" class="m-2 mx-5">en_CA</a>
     </div>
 
     <section class="m-5">
