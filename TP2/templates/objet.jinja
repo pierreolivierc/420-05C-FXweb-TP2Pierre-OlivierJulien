@@ -3,8 +3,10 @@
 {% block contenu %}
 
     <div class="d-flex justify-content-center">
-        <a class="btn btn-success m-2 p-2 border border-dark" href="/objet/details/{{ objet.id }}?langue=fr" class="m-2 mx-5">fr_CA</a>
-        <a class="btn btn-success m-2 p-2 border border-dark" href="/objet/details/{{ objet.id }}?langue=en" class="m-2 mx-5">en_CA</a>
+        <a class="btn btn-success m-2 p-2 border border-dark" href="/objet/details/{{ objet.id }}?langue=fr"
+           class="m-2 mx-5">fr_CA</a>
+        <a class="btn btn-success m-2 p-2 border border-dark" href="/objet/details/{{ objet.id }}?langue=en"
+           class="m-2 mx-5">en_CA</a>
     </div>
 
     <section class="m-5">
@@ -16,7 +18,13 @@
                 <h2 class="text-decoration-underline">{{ objet.titre }}</h2>
                 <p>Description : {{ objet.description }}</p>
                 <p>Date de création : {{ date }}</p>
-                <a class="btn btn-secondary border-dark fs-4" href="/objet/modifier/{{ objet.id }}">Modifier</a>
+                {% if session.courriel == objet.proprietaire or session.admin == 1 %}
+                    <a class="btn btn-secondary border-dark fs-4" href="/objet/modifier/{{ objet.id }}">Modifier</a>
+                    <a href="/objet/supprimer_objet/{{ objet.id }}" class="btn btn-primary m-2">Supprimer</a>
+                {% endif %}
+                {% if session.courriel != objet.proprietaire and (session.admin == 0 or session.admin == 1 ) %}
+                    <a href="objet/troqueur/{{ objet.id }}" class="btn btn-primary m-2">Troquer</a>
+                {% endif %}
             </div>
         </div>
     </section>

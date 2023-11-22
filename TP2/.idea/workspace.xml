@@ -6,7 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="3fa62e0a-c172-49f5-8316-1b4d50820da7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.jinja" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.jinja" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/liste_des_objets.jinja" beforeDir="false" afterPath="$PROJECT_DIR$/templates/liste_des_objets.jinja" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/objet.jinja" beforeDir="false" afterPath="$PROJECT_DIR$/templates/objet.jinja" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,6 +119,7 @@
       <workItem from="1699533863144" duration="6253000" />
       <workItem from="1699548132582" duration="8567000" />
       <workItem from="1699801388454" duration="4354000" />
+      <workItem from="1700668799595" duration="135000" />
     </task>
     <servers />
   </component>

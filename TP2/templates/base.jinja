@@ -26,15 +26,15 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="http://127.0.0.1:5000/">Accueil</a>
+                    <a class="nav-link active" aria-current="page" href="/">Accueil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="http://127.0.0.1:5000/objet/liste">Liste des
+                    <a class="nav-link" href="/objet/liste">Liste des
                         objets</a>
                 </li>
                 {% if session.courriel %}
                     <li class="nav-item">
-                        <a class="nav-link " href="http://127.0.0.1:5000/objet/ajouter">Ajouter un
+                        <a class="nav-link " href="/objet/ajouter">Ajouter un
                             objet</a>
                     </li>
                 {% endif %}
@@ -65,7 +65,7 @@
                     </li>
                 {% endif %}
             </ul>
-            <form method="post" action="http://127.0.0.1:5000/objet/rechercher" class="d-flex mx-2">
+            <form method="post" action="/objet/rechercher" class="d-flex mx-2">
                 <input id="contenu" name="contenu" class="form-control me-2" type="search" placeholder="Chercher" aria-label="Search">
                 <button class="btn btn-outline-light" type="submit">Chercher</button>
             </form>
