@@ -7,6 +7,7 @@ import os
 import bd
 import re
 
+from api import bp_api
 from comptes import bp_compte
 from objet import bp_objet
 
@@ -28,6 +29,7 @@ app.config['CHEMIN_VERS_AJOUTS'] = os.path.join(
 
 app.register_blueprint(bp_objet, url_prefix='/objet')
 app.register_blueprint(bp_compte, url_prefix='/comptes')
+app.register_blueprint(bp_api, url_prefix='/api')
 
 app.secret_key = 'b51213b260450a05dc8d0619a1e6850dd2e6902c0dcc9b02369749761b4b5f2f'
 

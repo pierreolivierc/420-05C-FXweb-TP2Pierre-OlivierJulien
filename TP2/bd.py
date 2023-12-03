@@ -1,8 +1,9 @@
 """Connexion a la bd"""
-
+import time
 import types
 import contextlib
 import mysql.connector
+from flask import jsonify
 
 
 @contextlib.contextmanager
@@ -216,3 +217,17 @@ def supprimer_objet(conn, id):
                 'id': id,
             }
         )
+
+
+def recherche_objet_par_input(conn, mots_cles):
+    """Retourne tous les objets de l'utilisateur """
+    with conn.get_curseur() as curseur:
+        curseur.execute(
+            "SELECT * FROM objets WHERE objets.titre LIKE %(mots)s",
+            {
+                'mots': "%" + mots_cles + "%",
+            }
+        )
+        lignes = curseur.fetchall()
+        time.sleep(0.25)
+        return jsonify(lignes)

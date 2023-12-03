@@ -66,7 +66,13 @@
                 {% endif %}
             </ul>
             <form method="post" action="/objet/rechercher" class="d-flex mx-2">
-                <input id="contenu" name="contenu" class="form-control me-2" type="search" placeholder="Chercher" aria-label="Search">
+                <div class="flex-column">
+                    <input id="contenu" name="contenu" class="form-control me-2" autocomplete="off" type="search"
+                           placeholder="Chercher"
+                           aria-label="Search">
+                    <div id="divDesRecherches" class="position-absolute popover flex-column d-flex">
+                    </div>
+                </div>
                 <button class="btn btn-outline-light" type="submit">Chercher</button>
             </form>
         </div>
@@ -88,6 +94,9 @@
     </div>
 </footer>
 
+
+<script src="/static/js/utils-ajax.js"></script>
+<script src="/static/js/recherche.js"></script>
 </body>
 
 </html>
