@@ -17,7 +17,7 @@
     {% endwith %}
 
     <section>
-        <div class="row justify-content-center">
+        <div id="liste_objet_accueil" class="row justify-content-center">
             {% for o in objets %}
                 {% if o.photo == None %}
                     {{ o.photo == "Image_de_base" }}

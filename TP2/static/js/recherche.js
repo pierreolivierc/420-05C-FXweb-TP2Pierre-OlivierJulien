@@ -31,7 +31,11 @@ async function ajout_info_recherche() {
             nouveau_resultat.id = "propo" + i;
             var nom = document.createTextNode(resultats[i].titre);
             nouveau_resultat.appendChild(nom);
-            la_div.appendChild(nouveau_resultat);
+            var li = document.createElement("li");
+            li.className = "bg-transparent"
+            li.appendChild(nouveau_resultat)
+
+            la_div.appendChild(li);
         }
     }
 
