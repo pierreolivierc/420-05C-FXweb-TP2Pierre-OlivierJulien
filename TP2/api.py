@@ -23,8 +23,16 @@ def recherche():
 
 @bp_api.route('/accueil_asynchrone')
 def accueil_asynchrone():
-    """retourne les 5 derniers objets aux 5 secondes"""
+    """Retourne les 5 derniers objets aux 5 secondes"""
 
     with bd.creer_connexion() as conn:
         objet = bd.obtenir_les_premier_objets_asynchrone(conn)
     return objet
+
+
+@bp_api.route('/supprimer_utilisateur')
+def supprimer_utilisateur():
+    """Supprimer un utilisateur"""
+
+    with bd.creer_connexion() as conn:
+        bd.supprimer_utilisateur(conn,)

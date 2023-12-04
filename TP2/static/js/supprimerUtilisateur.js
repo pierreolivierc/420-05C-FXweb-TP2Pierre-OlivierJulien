@@ -1,7 +1,10 @@
 "use strict";
 
-function initialisation() {
+async function suprimer_relister(){
 
+}
+function initialisation() {
+    suprimer_relister();
 }
 
 window.addEventListener("load", initialisation);
