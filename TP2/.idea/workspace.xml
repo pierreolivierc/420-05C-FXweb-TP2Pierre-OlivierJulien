@@ -123,7 +123,7 @@
       <workItem from="1701436646325" duration="15354000" />
       <workItem from="1701546834724" duration="11591000" />
       <workItem from="1701692665780" duration="4264000" />
-      <workItem from="1701697075391" duration="5201000" />
+      <workItem from="1701697075391" duration="5789000" />
     </task>
     <servers />
   </component>
@@ -146,6 +146,6 @@
     <SUITE FILE_PATH="coverage/TP1$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1694186157215" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/app_py$Flask.coverage" NAME="Flask Coverage Results" MODIFIED="1699365020388" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/app_py$Flask____________________FOLDER_Prog_session_4_web_3_TP2_420_05C_FXweb_TP2Pierre_OlivierJulien_TP2_app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1699544107126" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/app_py$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1701702388563" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/app_py$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1701702982633" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

@@ -32,7 +32,7 @@ async function accueil_au_5_seconde(){
             titreCard.classList.add('card-title');
 
             var texteCard = document.createElement('p');
-            titreCard.textContent = objets[i]['description'];
+            texteCard.textContent = objets[i]['description'];
             texteCard.classList.add('card-text');
 
             divCard.append(titreCard, texteCard);
@@ -44,17 +44,19 @@ async function accueil_au_5_seconde(){
             boutonVoir.href = '/objet/details/' + objets[i]['id'];
             boutonVoir.classList.add('btn', 'btn-primary', 'm-2');
             boutonVoir.textContent = 'Voir l\'objet';
-
+            divBouton.appendChild(boutonVoir);
             if (objets) {
                 var boutonModifier = document.createElement('a');
                 boutonModifier.href = '/objet/modifier/' + objets[i]['id'];
                 boutonModifier.classList.add('btn', 'btn-primary', 'm-2');
                 boutonModifier.textContent = 'Modifier';
+                divBouton.appendChild(boutonModifier);
 
                 var boutonSupprimer = document.createElement('a');
                 boutonSupprimer.href = '/objet/supprimer_objet/' + objets[i]['id'];
                 boutonSupprimer.classList.add('btn', 'btn-primary', 'm-2');
                 boutonSupprimer.textContent = 'Supprimer';
+                divBouton.appendChild(boutonSupprimer);
             }
 
             // TODO vérifier si l'utilisateur n'est pas propriétaire
@@ -63,22 +65,9 @@ async function accueil_au_5_seconde(){
                 boutonTroquer.href = '/objet/troqueur/' + objets[i]['id'];
                 boutonTroquer.classList.add('btn', 'btn-primary', 'm-2');
                 boutonTroquer.textContent = 'Troquer';
-            }
-
-             divBouton.appendChild(boutonVoir);
-
-            // Ajouter les boutons supplémentaires selon les conditions
-            if (boutonModifier) {
-                divBouton.appendChild(boutonModifier);
-            }
-
-            if (boutonSupprimer) {
-                divBouton.appendChild(boutonSupprimer);
-            }
-
-            if (boutonTroquer) {
                 divBouton.appendChild(boutonTroquer);
             }
+
         }
     }
 
