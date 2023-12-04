@@ -46,6 +46,8 @@ async function accueil_au_5_seconde(){
             boutonVoir.classList.add('btn', 'btn-primary', 'm-2');
             boutonVoir.textContent = 'Voir l\'objet';
             divBouton.appendChild(boutonVoir);
+
+            // TODO vérifier si l'utilisateur est propriétaire ou admin
             if (objets) {
                 var boutonModifier = document.createElement('a');
                 boutonModifier.href = '/objet/modifier/' + objets[i]['id'];
