@@ -19,6 +19,7 @@ async function accueil_au_5_seconde(){
             var imageElement = document.createElement('img');
             imageElement.height = 300;
             imageElement.width = 300;
+            imageElement.classList.add('card-img-top');
             imageElement.src = objets[i]['photo'];
             divElement.append(imageElement);
 
