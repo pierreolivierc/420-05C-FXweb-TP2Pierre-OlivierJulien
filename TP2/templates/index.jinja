@@ -28,7 +28,7 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ o.titre }}</h5>
                         <p class="card-text">{{ o.description }}</p>
-                        <div>
+                        <div class="d-flex flex-column justify-content-center align-items-center">
                             <a href="/objet/details/{{ o.id }}" class="btn btn-primary m-2">Voir l'objet</a>
                             {% if session.courriel == o.proprietaire or session.admin == 1  %}
                                 <a href="/objet/modifier/{{ o.id }}" class="btn btn-primary m-2">Modifer</a>

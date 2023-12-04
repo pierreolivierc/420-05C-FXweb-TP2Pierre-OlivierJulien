@@ -38,6 +38,7 @@ async function accueil_au_5_seconde(){
             divCard.append(titreCard, texteCard);
 
             var divBouton = document.createElement('div');
+            divBouton.classList.add('d-flex', 'flex-column', 'justify-content-center', 'align-items-center');
             divCard.append(divBouton);
 
             var boutonVoir = document.createElement('a');
