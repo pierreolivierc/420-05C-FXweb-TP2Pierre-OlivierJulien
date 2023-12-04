@@ -231,3 +231,12 @@ def recherche_objet_par_input(conn, mots_cles):
         lignes = curseur.fetchall()
         time.sleep(0.25)
         return jsonify(lignes)
+
+
+def obtenir_les_premier_objets_asynchrone(conn):
+    """Retourne les cinq derniers objets ajoutés"""
+    with conn.get_curseur() as curseur:
+        curseur.execute('SELECT * FROM `objets` ORDER BY date DESC LIMIT 5;')
+        objet = curseur.fetchall()
+        time.sleep(0.25)
+        return jsonify(objet)

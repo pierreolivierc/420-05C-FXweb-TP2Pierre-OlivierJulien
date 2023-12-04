@@ -20,3 +20,11 @@ def recherche():
     with bd.creer_connexion() as conn:
         recherche = bd.recherche_objet_par_input(conn, mots_cles)
     return recherche
+
+@bp_api.route('/accueil_asynchrone')
+def accueil_asynchrone():
+    """retourne les 5 derniers objets aux 5 secondes"""
+
+    with bd.creer_connexion() as conn:
+        objet = bd.obtenir_les_premier_objets_asynchrone(conn)
+    return objet
