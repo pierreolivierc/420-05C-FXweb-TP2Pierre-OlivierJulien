@@ -27,9 +27,11 @@ async function accueil_au_5_seconde(){
             divElement.append(divCard);
 
             var titreCard = document.createElement('h5');
+            titreCard.textContent = objets[i]['titre'];
             titreCard.classList.add('card-title');
 
             var texteCard = document.createElement('p');
+            titreCard.textContent = objets[i]['description'];
             texteCard.classList.add('card-text');
 
             divCard.append(titreCard, texteCard);
