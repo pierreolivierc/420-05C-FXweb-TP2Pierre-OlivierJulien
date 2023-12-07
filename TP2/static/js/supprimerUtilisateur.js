@@ -8,9 +8,10 @@ async function supprimer_rester(){
 
 }
 function initialisation() {
-    var tousLesBoutons = document.querySelectorAll('.bouton_supprimer');
+    var tousLesBoutons = document.getElementsByClassName('bouton_supprimer');
     for(let i = 0; i < tousLesBoutons; i++){
         tousLesBoutons[i].addEventListener("click", supprimer_rester);
+        alert('salut')
     }
 
 }
