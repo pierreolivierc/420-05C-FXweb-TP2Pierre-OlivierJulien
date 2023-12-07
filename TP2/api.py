@@ -47,9 +47,6 @@ def information_administrateur():
         return "Aucune information d'administrateur dans la session"
 
 
-@bp_api.route('/supprimer_utilisateur')
-def supprimer_utilisateur():
-    """Supprimer un utilisateur"""
 
-    with bd.creer_connexion() as conn:
-        bd.supprimer_utilisateur(conn,)
+
+

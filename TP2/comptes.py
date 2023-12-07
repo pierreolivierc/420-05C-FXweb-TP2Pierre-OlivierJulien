@@ -3,7 +3,7 @@ import hashlib
 import os
 
 from babel import dates
-from flask import Blueprint, abort, render_template, redirect, url_for, request, session, flash
+from flask import Blueprint, jsonify, abort, render_template, redirect, url_for, request, session, flash
 
 import bd
 import utilitaires
@@ -102,8 +102,8 @@ def lister_utilisateur_et_supprimer():
             with bd.creer_connexion() as conn:
                 bd.supprimer_utilisateur(conn, courriel)
                 tous_les_utilisateurs = bd.obtenir_tous_les_utilisateur(conn)
-                flash("Utilisateur " + courriel + " a été supprimé.")
-            return render_template('/liste_utilisateur.jinja', utilisateur=tous_les_utilisateurs)
+            result = {"success": True, "courriel": courriel}
+            return jsonify(result)
         else:
             with bd.creer_connexion() as conn:
                 tous_les_utilisateurs = bd.obtenir_tous_les_utilisateur(conn)

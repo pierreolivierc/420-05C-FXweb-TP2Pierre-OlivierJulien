@@ -3,7 +3,6 @@ import time
 import types
 import contextlib
 import mysql.connector
-from flask import jsonify
 
 
 @contextlib.contextmanager
