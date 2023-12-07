@@ -41,7 +41,8 @@ def information_utilisateur():
 def information_administrateur():
     """Retourne un dictionnaire comportant les informations utilisateurs"""
     if 'admin' in session:
-        return str(session['admin'])
+        admin = str(session['admin'])
+        return jsonify(admin)
     else:
         return "Aucune information d'administrateur dans la session"
 

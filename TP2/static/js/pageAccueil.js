@@ -3,7 +3,7 @@
 async function accueil_au_5_seconde() {
     var objets = await envoyerRequeteAjax('/api/accueil_asynchrone', "GET", null, null);
     var courrielUtilisateur = await envoyerRequeteAjax('/api/information_utilisateur', "GET", null, null);
-    console.log(courrielUtilisateur);
+    var admin = await envoyerRequeteAjax('/api/information_administateur', "GET", null, null);
     var div_objet = document.getElementById('liste_objet_accueil');
 
     while (div_objet.firstChild) {
@@ -49,7 +49,7 @@ async function accueil_au_5_seconde() {
 
 
 
-        if (objets) {
+        if ((admin === "1") || (courrielUtilisateur === objets[i]['proprietaire'])) {
             var boutonModifier = document.createElement('a');
             boutonModifier.href = '/objet/modifier/' + objets[i]['id'];
             boutonModifier.classList.add('btn', 'btn-primary', 'm-2');
@@ -64,7 +64,7 @@ async function accueil_au_5_seconde() {
         }
 
         // TODO vérifier si l'utilisateur n'est pas propriétaire
-        if (objets) {
+        if (courrielUtilisateur !== objets[i]['proprietaire']) {
             var boutonTroquer = document.createElement('a');
             boutonTroquer.href = '/objet/troqueur/' + objets[i]['id'];
             boutonTroquer.classList.add('btn', 'btn-primary', 'm-2');
