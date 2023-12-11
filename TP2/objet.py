@@ -247,14 +247,9 @@ def supprimer_objet(id):
 @bp_objet.route('/rechercher', methods=["GET", "POST"])
 def chercher_des_objets():
     if request.method == "POST":
-        contenu = request.form.get('contenu')
-        contenu_de_base = contenu
-        contenu = "%" + contenu + "%"
+        contenu_de_base = request.form.get('contenu')
     else:
-        contenu = request.args.get('contenue')
-        contenu_de_base = contenu
-    with bd.creer_connexion() as conn:
-       objets = bd.obtenir_objets_par_recherche(conn, contenu)
+        contenu_de_base = request.args.get('contenue')
     if session.get('courriel'):
         liste = session.get('recherches', [])
         if contenu_de_base not in liste:
@@ -262,4 +257,4 @@ def chercher_des_objets():
             if len(liste) > 5:
                 liste.pop(0)
             session['recherches'] = liste
-    return render_template('liste_des_objets.jinja', objets=objets)
+    return render_template('liste_des_objets.jinja', contenu=contenu_de_base)

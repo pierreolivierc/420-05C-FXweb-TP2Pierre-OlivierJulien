@@ -132,15 +132,16 @@ def obtenir_un_objet_par_id(conn, id):
             return curseur.fetchone()
 
 
-def obtenir_objets_par_recherche(conn, contenue):
+def obtenir_objets_par_recherche(conn, contenu, index):
     with conn.get_curseur() as curseur:
         curseur.execute(
-            'SELECT * FROM objets WHERE titre LIKE %(contenue)s',
+            'SELECT * FROM objets WHERE titre LIKE %(contenu)s LIMIT 4 OFFSET %(index)s',
             {
-                'contenue': contenue
+                'contenu': contenu,
+                'index': int(index)
             }
         )
-    return curseur.fetchall()
+        return curseur.fetchall()
 
 def obtenir_id_objet(conn, courriel):
     with conn.get_curseur() as curseur:

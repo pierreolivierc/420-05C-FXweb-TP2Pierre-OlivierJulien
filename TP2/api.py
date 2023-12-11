@@ -56,3 +56,11 @@ def les_recherches():
     else:
         abort(401)
 
+@bp_api.route('/les_quatres_suivants')
+def les_quatres_suivants():
+    """Retourne les quatres objets suivants"""
+    mots_cles = request.args.get("mot-cle")
+    index = request.args.get("index")
+    with bd.creer_connexion() as conn:
+        objets = bd.obtenir_objets_par_recherche(conn, mots_cles, index)
+    return jsonify(objets)

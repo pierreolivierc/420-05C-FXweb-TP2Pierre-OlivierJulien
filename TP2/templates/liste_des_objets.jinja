@@ -3,31 +3,30 @@
 {% block contenu %}
 
     <section>
-        <div class="row justify-content-center">
-            {% for o in objets %}
-                {% if o.photo == None %}
-                    {{ o.photo == "Image_de_base" }}
-                {% endif %}
-                <div class="card col-md-12 col-lg-6 d-flex justify-content-center m-4 p-3 border-dark"
-                     style="width: 18rem;">
-                    <img height="300" width="300" src="{{ o.photo }}" class="card-img-top" alt="L'image d'un objet">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ o.titre }}</h5>
-                        <p class="card-text">{{ o.description }}</p>
-                        <div>
-                            <a href="/objet/details/{{ o.id }}" class="btn btn-primary m-2">Voir l'objet</a>
-                            {% if session.courriel == o.proprietaire or session.admin == 1 %}
-                                <a href="/objet/modifier/{{ o.id }}" class="btn btn-primary m-2">Modifier</a>
-                                <a href="/objet/supprimer_objet/{{ o.id }}" class="btn btn-primary m-2">Supprimer</a>
-                            {% endif %}
-                            {% if session.courriel != o.proprietaire and (session.admin == 0 or session.admin == 1 )%}
-                                <a href="objet/troqueur/{{ o.id }}" class="btn btn-primary m-2">Troquer</a>
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
+        <div class="row justify-content-center" id="la_div">
+            <p id="mot_cle">{{ contenu }}</p>
+
+        </div>
+        <div class="d-flex align-content-center justify-content-around fs-2">
+            <a id="precedent" class="btn btn-light m-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                     class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                          d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5M10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5"/>
+                </svg>
+            </a>
+            <a id="suivant" class="btn btn-light m-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                     class="bi bi-arrow-bar-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                          d="M6 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L12.293 7.5H6.5A.5.5 0 0 0 6 8m-2.5 7a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5"/>
+                </svg>
+            </a>
         </div>
     </section>
 
+{% endblock %}
+
+{% block script %}
+    <script src="/static/js/paginage.js"></script>
 {% endblock %}

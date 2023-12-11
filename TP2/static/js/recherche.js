@@ -21,7 +21,7 @@ async function ajout_info_recherche() {
     if (input.length > 2) {
         var resultats = await envoyerRequeteAjax('/api/recherche', "GET", parametres, controleur);
 
-        for (var i = 0; i < resultats.length; i++) {
+        for (var i = resultats.length; i > 0; i--) {
             var nouveau_resultat = document.createElement("a");
 
             nouveau_resultat.href = "/objet/troqueur/" + resultats[i].id;
@@ -30,7 +30,7 @@ async function ajout_info_recherche() {
             var nom = document.createTextNode(resultats[i].titre);
             nouveau_resultat.appendChild(nom);
             var li = document.createElement("li");
-            li.className = "bg-transparent py-2"
+            li.className = "bg-transparent py-2 btn"
             li.appendChild(nouveau_resultat)
 
             la_div.appendChild(li);
@@ -47,11 +47,7 @@ async function vider_la_div() {
 
 async function remplire_la_div() {
     var resultats = await envoyerRequeteAjax('/api/les_recherches', "GET", null, null);
-    console.log("Les resultats")
 
-    for (var i = 0; i < resultats.length; i++){
-        console.log(resultats[i])
-    }
     for (var i = 0; i < resultats.length; i++) {
         var nouveau_resultat = document.createElement("a");
 
