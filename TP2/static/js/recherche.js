@@ -3,9 +3,7 @@
 let controleur = null;
 
 
-
 var la_div = document.getElementById("divDesRecherches");
-
 
 
 async function ajout_info_recherche() {
@@ -32,7 +30,7 @@ async function ajout_info_recherche() {
             var nom = document.createTextNode(resultats[i].titre);
             nouveau_resultat.appendChild(nom);
             var li = document.createElement("li");
-            li.className = "bg-transparent"
+            li.className = "bg-transparent py-2"
             li.appendChild(nouveau_resultat)
 
             la_div.appendChild(li);
@@ -42,11 +40,33 @@ async function ajout_info_recherche() {
 }
 
 
-async function vider_la_div(){
-        la_div.innerHTML = "";
+async function vider_la_div() {
+    la_div.innerHTML = "";
 }
 
 
+async function remplire_la_div() {
+    var resultats = await envoyerRequeteAjax('/api/les_recherches', "GET", null, null);
+    console.log("Les resultats")
+
+    for (var i = 0; i < resultats.length; i++){
+        console.log(resultats[i])
+    }
+    for (var i = 0; i < resultats.length; i++) {
+        var nouveau_resultat = document.createElement("a");
+
+        nouveau_resultat.href = "/objet/rechercher?contenue=" + resultats[i];
+        nouveau_resultat.className = "bg-light p-2 text-decoration-none text-black px-5 border-3 border-dark rounded";
+        nouveau_resultat.id = "propo" + i;
+        var nom = document.createTextNode(resultats[i]);
+        nouveau_resultat.appendChild(nom);
+        var li = document.createElement("li");
+        li.className = "bg-transparent py-2"
+        li.appendChild(nouveau_resultat)
+
+        la_div.appendChild(li);
+    }
+}
 
 function initialisation() {
     document
@@ -55,6 +75,9 @@ function initialisation() {
     document
         .getElementById("contenu")
         .addEventListener("focusout", vider_la_div);
+    document
+        .getElementById("contenu")
+        .addEventListener("focus", remplire_la_div);
 }
 
 window.addEventListener("load", initialisation);

@@ -83,7 +83,7 @@ def creer_session(courriel, admin):
     session.permanent = True
     session['courriel'] = courriel
     session['admin'] = admin
-
+    session['recherches'] = []
 
 @bp_compte.route('/deconnecter')
 def deconnexion():

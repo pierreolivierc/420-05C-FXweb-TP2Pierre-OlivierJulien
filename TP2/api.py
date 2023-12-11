@@ -47,6 +47,12 @@ def information_administrateur():
         return "Aucune information d'administrateur dans la session"
 
 
-
-
+@bp_api.route('/les_recherches')
+def les_recherches():
+    """Retourne les recherches de l'utilisateur"""
+    if session.get('courriel'):
+        liste_de_recherche = session.get('recherches', [])
+        return jsonify(liste_de_recherche)
+    else:
+        abort(401)
 

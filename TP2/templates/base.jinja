@@ -65,7 +65,7 @@
                     </li>
                 {% endif %}
             </ul>
-            <form method="post" action="/objet/rechercher" class="d-flex mx-2">
+            <form id="form_recherche" method="post" action="/objet/rechercher" class="d-flex mx-2">
                 <div class="flex-column">
                     <input id="contenu" name="contenu" class="form-control me-2" autocomplete="off" type="search"
                            placeholder="Chercher"
@@ -77,7 +77,7 @@
 
                     </div>
                 </div>
-                <button class="btn btn-outline-light" type="submit">Chercher</button>
+                <button id="chercher" class="btn btn-outline-light" type="submit">Chercher</button>
             </form>
         </div>
     </div>

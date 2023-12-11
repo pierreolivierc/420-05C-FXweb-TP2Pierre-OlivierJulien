@@ -244,10 +244,22 @@ def supprimer_objet(id):
         abort(401)
 
 
-@bp_objet.route('/rechercher', methods=["POST"])
+@bp_objet.route('/rechercher', methods=["GET", "POST"])
 def chercher_des_objets():
-    contenu = request.form.get('contenu')
-    contenu = "%" + contenu + "%"
+    if request.method == "POST":
+        contenu = request.form.get('contenu')
+        contenu_de_base = contenu
+        contenu = "%" + contenu + "%"
+    else:
+        contenu = request.args.get('contenue')
+        contenu_de_base = contenu
     with bd.creer_connexion() as conn:
        objets = bd.obtenir_objets_par_recherche(conn, contenu)
+    if session.get('courriel'):
+        liste = session.get('recherches', [])
+        if contenu_de_base not in liste:
+            liste.append(contenu_de_base)
+            if len(liste) > 5:
+                liste.pop(0)
+            session['recherches'] = liste
     return render_template('liste_des_objets.jinja', objets=objets)
