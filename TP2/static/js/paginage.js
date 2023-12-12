@@ -1,19 +1,18 @@
 "use strict";
 
-var la_div = document.getElementById("la_div");
+var la_div_contenue = document.getElementById("div_contenue");
 var mot_cle = document.getElementById("mot_cle").innerHTML;
 var index
 
 async function charger(i) {
-    if ((index - 4 > -1) && (i === 8)){
+    if ((index - 4 > -1) && (i === 8)) {
         index = index - 4;
-    }
-    else if (i === 4){
+    } else if (i === 4) {
         index += i;
     }
     var courrielUtilisateur = await envoyerRequeteAjax('/api/information_utilisateur', "GET", null, null);
     var admin = await envoyerRequeteAjax('/api/information_administateur', "GET", null, null);
-    la_div.innerHTML = ""
+    la_div_contenue.innerHTML = ""
 
     const parametres = {
         "mot-cle": "%" + mot_cle + "%",
@@ -21,8 +20,13 @@ async function charger(i) {
     }
     controleur = new AbortController();
     var resultats = await envoyerRequeteAjax('/api/les_quatres_suivants', "GET", parametres, controleur);
-    for (var i = 0; i < resultats.length; i++){
-        if (resultats[i].photo == null){
+
+    if (resultats.length === 0){
+        return vide()
+    }
+
+    for (var i = 0; i < resultats.length; i++) {
+        if (resultats[i].photo == null) {
             resultats[i].photo = "Image_de_base"
         }
 
@@ -77,7 +81,7 @@ async function charger(i) {
             btn_supprimer.appendChild(texte_btn3)
             plus_petite_div.appendChild(btn_supprimer)
         }
-        if ((courrielUtilisateur !== resultats[i].proprietaire)){
+        if ((courrielUtilisateur !== resultats[i].proprietaire)) {
             var btn_troquer = document.createElement("a")
             btn_modifier.href = "/objet/troqueur/" + resultats[i].id
             btn_modifier.className = "btn btn-primary m-2"
@@ -88,18 +92,51 @@ async function charger(i) {
 
         petite_div.appendChild(plus_petite_div)
         grosse_div.appendChild(petite_div)
-        la_div.appendChild(grosse_div)
+        la_div_contenue.appendChild(grosse_div)
 
     }
+    verifier_suivant()
 }
 
 
-async function precedent(){
+async function precedent() {
     charger(8)
 }
 
-async function suivant(){
+async function suivant() {
     charger(4)
+}
+
+
+async function vide() {
+    var une_div = document.createElement("div")
+    une_div.className = "d-flex justify-content-center"
+    var message = document.createElement("p")
+    message.className = "fs-1 p-5 m-5"
+    var le_message = document.createTextNode("Aucun item n'a été trouvé!")
+    message.appendChild(le_message)
+    une_div.appendChild(message)
+    la_div_contenue.appendChild(une_div)
+}
+
+
+async function verifier_suivant() {
+    index += 4;
+    const parametres = {
+        "mot-cle": "%" + mot_cle + "%",
+        "index": index
+    }
+    controleur = new AbortController();
+    var resultats = await envoyerRequeteAjax('/api/les_quatres_suivants', "GET", parametres, controleur);
+    if (resultats.length === 0){
+        var btn_suivant = document.getElementById("suivant")
+        btn_suivant.className = "btn btn-light m-2 invisible"
+    }
+    else {
+        var btn_suivant = document.getElementById("suivant")
+        btn_suivant.className = "btn btn-light m-2 visible"
+    }
+    index = index - 4;
 }
 
 
