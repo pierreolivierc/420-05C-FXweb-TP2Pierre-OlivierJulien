@@ -14,10 +14,10 @@
             {% for o in utilisateur %}
                 <div id="{{ o.courriel }}" class="col-md-4" >
                     <div class="card m-2">
-                        <form class="card-body" method="post" action="/comptes/liste_utilisateur">
+                        <form class="card-body" method="POST" action="/comptes/liste_utilisateur">
                             <h5 class="card-title">{{ o.courriel }}</h5>
                             <input type="hidden" name="courriel" value="{{ o.courriel }}">
-                            <input type="button" value="Supprimer" class="bouton_supprimer btn btn-danger">
+                            <input type="button" value="Supprimer" class="bouton_supprimer btn btn-danger" data-courriel="{{ o.courriel }}">
                         </form>
                     </div>
                 </div>

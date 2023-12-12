@@ -97,12 +97,12 @@ def deconnexion():
 def lister_utilisateur_et_supprimer():
     admin = session.get('admin')
     if admin == 1:
-        if (request.method == 'POST'):
-            courriel = (request.form.get("courriel", default=""))
+        if request.method == 'POST':
+            courriel = request.form.get("courriel", default="")
             with bd.creer_connexion() as conn:
                 bd.supprimer_utilisateur(conn, courriel)
                 tous_les_utilisateurs = bd.obtenir_tous_les_utilisateur(conn)
-            result = {"success": True, "courriel": courriel}
+            result = {"success": True, "courriel": courriel, "utilisateur": tous_les_utilisateurs}
             return jsonify(result)
         else:
             with bd.creer_connexion() as conn:
