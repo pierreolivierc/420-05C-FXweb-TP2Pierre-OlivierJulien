@@ -24,7 +24,7 @@ def page_liste_des_objets():
     """Gestion de l'affichage de tout les objets."""
     with bd.creer_connexion() as conn:
             objets = bd.obtenir_tous_les_objets(conn)
-    return render_template('liste_des_objets.jinja', objets=objets)
+    return render_template('tout_les_objets.jinja', objets=objets)
 
 
 @bp_objet.route('/ajouter', methods=["GET", "POST"])

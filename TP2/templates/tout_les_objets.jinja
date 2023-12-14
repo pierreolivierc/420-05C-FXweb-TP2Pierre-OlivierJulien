@@ -1,0 +1,36 @@
+{% extends "base.jinja" %}
+
+{% block titre %}
+    Recherche | FAKE
+{% endblock %}
+
+
+{% block contenu %}
+    <section>
+        <div class="row justify-content-center">
+            {% for o in objets %}
+                {% if o.photo == None %}
+                    {{ o.photo == "Image_de_base" }}
+                {% endif %}
+                <div class="card col-md-12 col-lg-6 d-flex justify-content-center m-4 p-3 border-dark"
+                     style="width: 18rem;">
+                    <img height="300" width="300" src="{{ o.photo }}" class="card-img-top" alt="L'image d'un objet">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ o.titre }}</h5>
+                        <p class="card-text">{{ o.description }}</p>
+                        <div>
+                            <a href="/objet/details/{{ o.id }}" class="btn btn-primary m-2">Voir l'objet</a>
+                            {% if session.courriel == o.proprietaire or session.admin == 1 %}
+                                <a href="/objet/modifier/{{ o.id }}" class="btn btn-primary m-2">Modifier</a>
+                                <a href="/objet/supprimer_objet/{{ o.id }}" class="btn btn-primary m-2">Supprimer</a>
+                            {% endif %}
+                            {% if session.courriel != o.proprietaire and (session.admin == 0 or session.admin == 1 ) %}
+                                <a href="objet/troqueur/{{ o.id }}" class="btn btn-primary m-2">Troquer</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}
