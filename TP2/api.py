@@ -1,12 +1,5 @@
-import datetime
-import hashlib
-import os
-
-from babel import dates
-from flask import Blueprint, abort, render_template, redirect, url_for, request, session, flash, jsonify
+from flask import Blueprint, abort, request, session, jsonify
 import bd
-import utilitaires
-from utilitaires import hacher_mdp
 
 bp_api = Blueprint('api', __name__)
 
